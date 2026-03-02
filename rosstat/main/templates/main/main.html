@@ -7,5 +7,11 @@
 </head>
 <body>
     <h1>Главная страница</h1>
+    {% if request.user.is_authenticated %}
+        <h3>{{request.user}}</h3>
+        <a class="navbar-brand" href="{% url 'logout' %}">Выйти</a>
+    {% else %}
+        <a class="navbar-brand" href="{% url 'login' %}">Войти</a>
+    {% endif %}
 </body>
 </html>
