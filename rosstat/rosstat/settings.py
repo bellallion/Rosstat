@@ -40,12 +40,15 @@ INSTALLED_APPS = [
 
     'crispy_bootstrap4',
     'crispy_forms',
+    'rest_framework',
+    'django_excel_fixture',
 
     #app
     'main',
     'accounts',
     'regions', 
-    'map'
+    'map',
+    'api'
 ]
 
 MIDDLEWARE = [
