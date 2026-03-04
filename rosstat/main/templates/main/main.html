@@ -6,12 +6,21 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Главная страница</h1>
-    {% if request.user.is_authenticated %}
-        <h3>{{request.user}}</h3>
-        <a class="navbar-brand" href="{% url 'logout' %}">Выйти</a>
-    {% else %}
-        <a class="navbar-brand" href="{% url 'login' %}">Войти</a>
-    {% endif %}
+    {% block content %}
+        <h1>Главная страница</h1>
+        {% if request.user.is_authenticated %}
+            <h3>{{request.user}}</h3>
+            <a class="navbar-brand" href="{% url 'logout' %}">Выйти</a>
+        {% else %}
+            <a class="navbar-brand" href="{% url 'login' %}">Войти</a>
+        {% endif %}
+        {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+        {% endif %}
+    {% endblock %}
 </body>
 </html>

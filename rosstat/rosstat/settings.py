@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'crispy_bootstrap4',
+    'crispy_forms',
+
     #app
     'main',
     'accounts'
@@ -124,3 +127,5 @@ STACTICFILES_DIRS = [
     BASE_DIR / "static"
 ]
 
+#Ссылка на стили для форм
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
