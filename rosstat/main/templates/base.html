@@ -15,7 +15,13 @@
           <div class="navbar-nav">
             {% if user.is_authenticated %}
             	<a class="nav-item nav-link" href="{% url 'profile' %}">Профиль</a>
-            	<a class="nav-item nav-link" href="{% url 'logout' %}">Выход</a>
+            	<form method="post" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link nav-item nav-link" 
+                        style="display: inline; border: none; background: none; padding: 0.5rem 1rem;">
+                    Выход
+                </button>
+                </form>
           	{% else %}
             	<a class="nav-item nav-link" href="{% url 'login' %}">Вход</a>
             	<a class="nav-item nav-link" href="{% url 'register' %}">Регистрация</a>
