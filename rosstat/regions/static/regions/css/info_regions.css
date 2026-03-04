@@ -1,0 +1,31 @@
+.show-charts {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.show-charts p {
+  font-size: 20px;
+  color: #005b96;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  font-weight: 600;
+}
+
+.show-charts p::after {
+  color: #5562d9;
+}
+
+
+#button-select-type:hover {
+  background-color: #1565c0;
+  transform: translateY(-2px);
+}
+
+.chart-description{
+    font-size: 18px;
+    color: #424242;
+    margin: 10px;
+}

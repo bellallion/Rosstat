@@ -1,0 +1,66 @@
+<div class="show-charts">
+    <p id="p-population">Динамика численности населения</p>
+    <div class="chart-description">
+        На графике отображена динамика изменения численности населения по годам. 
+        Позволяет отследить миграционные тенденции и естественный прирост/убыль населения.
+    </div>
+    <canvas id="population"></canvas>
+</div>
+
+<div class="show-charts">
+    <p id="p-EmploymentRussia">Рабочая сила и экономическая активность</p>
+    <div class="chart-description">
+        График показывает численность экономически активного населения, 
+        включая занятых и ищущих работу. Важный индикатор трудового потенциала региона.
+    </div>
+    <canvas id="EmploymentRussia"></canvas>
+</div>
+
+<div class="show-charts">
+    <p id="p-EmploymentByTypeOfWork">Уровень занятости населения</p>
+    <div class="chart-description">
+        Отображает процентное соотношение занятого населения к общей численности 
+        трудоспособного возраста. Ключевой показатель эффективности рынка труда.
+    </div>
+    <canvas id="EmploymentByTypeOfWork"></canvas>
+</div>
+
+<div id="show-two-type-charts">
+    <button id="button-select-type"></button>
+    <div id="first-type">
+        <div class="show-charts">
+            <p >Распределение рабочих мест по отраслям (ВО)</p>
+            <div class="chart-description">
+                Показывает структуру занятости выпускников высшего образования по отраслям экономики.
+                Помогает определить наиболее востребованные профессиональные направления.
+            </div>
+            <canvas id="WorkInSpecialityHE"></canvas>
+        </div>
+        <div class="show-charts">
+            <p>Трудоустройство выпускников (ВО)</p>
+            <div class="chart-description">
+                Отражает процент трудоустройства выпускников вузов по специальности.
+                Важный показатель эффективности образовательных программ.
+            </div>
+            <canvas id="WorkingGraduatesHE"></canvas>
+        </div>
+    </div>
+    <div id="second-type" style="display:none;">
+        <div class="show-charts">
+            <p>Распределение рабочих мест по отраслям (СПО)</p>
+            <div class="chart-description">
+                Демонстрирует структуру занятости выпускников среднего профессионального образования.
+                Позволяет оценить востребованность рабочих специальностей.
+            </div>
+            <canvas id="WorkInSpecialitySPO"></canvas>
+        </div>
+        <div class="show-charts">
+            <p>Трудоустройство выпускников (СПО)</p>
+            <div class="chart-description">
+                Показывает уровень трудоустройства выпускников колледжей и техникумов.
+                Индикатор соответствия образования потребностям рынка труда.
+            </div>
+            <canvas id="WorkingGraduatesSPO"></canvas>
+        </div>
+    </div>
+</div>

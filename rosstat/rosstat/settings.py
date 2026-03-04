@@ -43,7 +43,9 @@ INSTALLED_APPS = [
 
     #app
     'main',
-    'accounts'
+    'accounts',
+    'regions', 
+    'map'
 ]
 
 MIDDLEWARE = [

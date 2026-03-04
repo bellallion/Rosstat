@@ -1,0 +1,150 @@
+.select-region {
+    display: flex;
+    flex-direction: row;
+}
+
+.map-russia {
+    width: 80%;
+    margin-top: 20px;
+    /* transition: all 3s ease-out; плавность изменения цвета*/
+}
+
+.select-from-list {
+    margin: 20px;
+    position: relative;
+}
+
+.select-name-region-first {
+    width: 100%;
+}
+
+.select-name-region-second {
+    width: 100%;
+}
+
+.select-time {
+    width: 100%;
+}
+
+.show-info {
+    display: none;
+}
+
+/* .map-russia {
+    width : 40%;
+    fill: #adb4ed;
+    
+} */
+.map-russia:hover {
+    fill: #929cf0;
+}
+
+.select-from-list-and-text {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    align-items: center;
+}
+
+#anchors {
+    display: flex;
+    gap: 15px;
+    /* flex-wrap: wrap; */
+    flex-direction: row;
+}
+
+
+#anchors a {
+    text-decoration: none;
+    color: var(--primary-blue);
+    padding: 4px 6px;
+    margin: 3px;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s;
+    border: 1px solid var(--primary-blue);
+}
+
+#anchors a:hover {
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+.show-info {
+    display: none;
+    flex-direction: column;
+}
+
+
+
+:root {
+    --primary-blue: #1e88e5;
+    --light-blue: #e3f2fd;
+    --dark-blue: #0d47a1;
+    --white: #ffffff;
+    --light-gray: #f5f5f5;
+    --medium-gray: #e0e0e0;
+    --dark-gray: #424242;
+}
+
+
+
+.select-from-list-and-text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: var(--white);
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Текст и заголовки */
+.show-info p {
+    margin: 0;
+    color: var(--dark-gray);
+    font-size: 16px;
+}
+
+/* Формы и кнопки */
+.select-name-region {
+    width: 100%;
+    border: 1px solid var(--medium-gray);
+    border-radius: 4px;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    background-color: var(--white);
+    color: var(--dark-gray);
+    /* нужно будет убрать при добавлени функционала + изменить код */
+}
+
+#button-show-info {
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.show-info p {
+    margin: 0;
+    color: var(--dark-gray);
+    font-size: 16px;
+}
+
+#button-show-info:hover {
+    background-color: var(--dark-blue);
+}
+
+#title-name {
+    font-size: 40px;
+    color: #005b96;
+}
+
+/* Навигационные сс

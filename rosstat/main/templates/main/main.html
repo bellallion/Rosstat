@@ -1,4 +1,52 @@
 {% extends "base.html" %}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'main/css/main_style.css' %}"/>
+{% endblock %}
+
+{% block title %}Главная страница{% endblock %}
+
 {% block content %}
-    <h2>Главная страница</h2>
-{% endblock content %}
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">ЗАНЯТОСТЬ РЕГИОНОВ РОССИИ</h1>
+            <p class="hero-subtitle">Интерактивная платформа для изучения статистики занятости населения</p>
+        </div>
+    </section>
+    <div class="about-project">
+        <section class="sections">
+            <p class="title-name">ВОЗМОЖНОСТИ СИСТЕМЫ</p>
+            <div id="anchors">
+                <div class="feature-card">
+                    <a href="#p-EmploymentRussia">Общая аналитика</a>
+                    <!-- <p class="info">Данные по всем годам</p> -->
+                </div>
+                <div class="feature-card">
+                    <a href="#p-population">Статистика по регионам</a>
+                    <!-- <p class="info">Подробная информация о занятости населения в каждом субъекте РФ</p> -->
+                </div>
+                <div class="feature-card">
+                    <a href="#p-EmploymentByTypeOfWork">Сравнение регионов</a>
+                    <!-- <p class="info">Сравнительный анализ показателей между двумя выбранными регионами</p> -->
+                </div>
+            </div>
+        </section>
+        <section class="sections">
+            <div class="about-content">
+                <p class="title-name">О ПРОЕКТЕ</h2>
+                <div class="about-text">
+                    <p>Данный проект разработан в рамках дисциплины "Технология разработки программных приложений" (ТРПП) и представляет собой веб-приложение для анализа статистики занятости населения в регионах России.</p>
+                    <div class="team-info">
+                        <h3>Команда разработчиков:</h3>
+                        <ul class="team-list">
+                            <li><strong>Кузнецова М.С.</strong> - архитектура проекта, backend-разработка</li>
+                            <li><strong>Кононова А.А.</strong> - дизайн интерфейса, frontend-реализация</li>
+                        </ul>
+                    </div>
+                    
+                    <p>Система построена на Django Framework и использует современные веб-технологии для представления данных в удобном и наглядном виде.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

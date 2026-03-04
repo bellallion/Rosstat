@@ -1,0 +1,69 @@
+:root {
+  --primary-blue: #1e88e5;  
+  --light-blue: #e3f2fd;   
+  --dark-blue: #0d47a1;     
+  --white: #ffffff; 
+  --title: #005b96;
+  --light-gray: #f5f5f5;    
+  --medium-gray: #e0e0e0;   
+  --dark-gray: #424242;
+  --button-hover: #1565c0;
+}
+#second-type{
+    display: none;
+}
+
+
+.show-charts {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.show-charts p {
+  font-size: 20px;
+  color: var(--title);
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  font-weight: 600;
+}
+
+.show-charts p::after {
+  color: var(--title);
+}
+
+
+#show-two-type-charts {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+}
+
+#button-select-type {
+    width: 30%;
+    background-color: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    margin: 30px;
+    align-self: flex-start;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#button-select-type:hover {
+  background-color: var(--button-hover);
+  transform: translateY(-2px);
+}
+
+.chart-description{
+    font-size: 18px;
+    color: var(----dark-gray);
+    margin: 10px;
+}

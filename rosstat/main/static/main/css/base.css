@@ -1,0 +1,109 @@
+:root{
+  --header-height: 8%;
+  --max-header-height: 80px;
+  --min-header-height: 40px;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;          
+  flex-direction: column; 
+  min-height: 100vh; 
+  overflow-x: hidden;   
+}
+.topnav{
+  position: fixed;
+  width: 100%; 
+  top: 0;
+  z-index: 1000;
+  flex-shrink: 0;
+  height: var(--header-height);
+  max-height: var(--max-header-height);
+  min-height: var(--min-header-height);
+  overflow: hidden;
+  background-color: #5562d9; 
+  display: flex;
+  flex-direction: row; 
+}
+
+
+.topnav a,
+.topnav svg {
+  /* background: #929cf0; */
+  color:rgb(228, 228, 228);
+  text-align: center;
+  padding: 14px 5px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.topnav span{
+  padding-left: 5px;
+}
+.topnav img{
+  height: 70%;
+}
+
+.primary-navigation{
+  display: flex; 
+  height: 100%; 
+  align-items: center; 
+  /* gap: 15px; */
+}
+.dropdown-item {
+  display: flex;
+  align-items: center; 
+  height: 100%; 
+}
+.logo-main__img {
+  max-height: 100%; 
+  width: auto;
+}
+
+.topnav a:hover {
+  background-color: #929cf0;
+  color: white ;
+}
+/* изменение цвета для активной вкладки */
+/* .primary-navigation a.ctive {
+  background-color: #adb4ed;
+  color: white;
+} */
+.main-content{
+    display: flex;
+    flex-direction: column;
+    margin-left: 7% ;
+    margin-right: 7% ;
+    padding-left: 3%;
+    padding-right: 3%;
+    background :#fcfafa;
+    z-index: 1; 
+    padding-top: var(--max-header-height);
+}
+
+.footer{
+    background :#ededed;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    margin-top: auto; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;    
+}
+.footer p, 
+.footer a {
+    margin: 2px ;
+    text-align: center;
+    font-size: 12px;
+    color:#333;
+    
+}
+.footer-bottom {
+  padding: 0;
+}
+
+

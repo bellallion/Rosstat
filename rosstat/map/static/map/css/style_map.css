@@ -1,0 +1,117 @@
+:root {
+  --primary-blue: #1e88e5;  
+  --light-blue: #e3f2fd;   
+  --dark-blue: #0d47a1;     
+  --white: #ffffff; 
+  --title: #005b96;
+  --light-gray: #f5f5f5;    
+  --medium-gray: #e0e0e0;   
+  --dark-gray: #424242;     
+}
+
+
+.about-russia{
+    display: flex;
+    flex-direction: row;
+}
+.map-russia {
+    width : 40%;
+    fill: #adb4ed;
+    
+}
+.map-russia:hover{
+    fill: #929cf0;
+}
+.select-from-list-and-text{
+    width : 60%;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    align-items: center;
+}
+/* .button-show-info{
+    margin : px;
+} */
+
+#anchors {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+
+#anchors a {
+  text-decoration: none;
+  color: var(--primary-blue);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.3s;
+  border: 1px solid var(--primary-blue);
+}
+
+#anchors a:hover {
+  background-color: var(--primary-blue);
+  color: white;
+}
+
+.show-info{
+    display: flex;
+    flex-direction: column; 
+}
+
+
+.select-from-list-and-text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: var(--white);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.show-info p {
+  margin: 0;
+  color: var(--dark-gray);
+  font-size: 16px;
+}
+
+/* Формы и кнопки */
+.select-time {
+  padding: 10px 15px;
+  border: 1px solid var(--medium-gray);
+  border-radius: 4px;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  background-color: var(--white);
+  color: var(--dark-gray);
+  /* нужно будет убрать при добавлени функционала + изменить код */
+  display: none;
+}
+
+#button-show-info {
+  background-color: var(--primary-blue);
+  color: var(--white);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  /* нужно будет убрать при добавлени функционала */
+  display: none;
+}
+
+#button-show-info:hover {
+  background-color: var(--dark-blue);
+}
+
+#title-name{
+    font-size: 40px;
+    color: var(--title);
+}
+
+/* Навигационные сс

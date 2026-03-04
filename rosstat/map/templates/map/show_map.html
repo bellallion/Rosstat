@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Карта регионов России{% endblock %}
+
+{% block style %}
+    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+    <link rel="stylesheet" href="{% static 'map/css/style_map.css' %}"/>
+    <link rel="stylesheet" href="{% static 'map/css/info_map.css' %}"/>
+{% endblock %}
+
+
+{% block content %}
+    <div class="about-russia">
+        <div class="map-russia">
+            {% include "map/russia.html" %}
+        </div>
+        <div class="select-from-list-and-text">
+            <p id="title-name">СТАТИСТИКА ПО РОССИИ</p>
+            <select class="select-time">
+                <option value="all" selected="selected"></option>
+            </select>
+            <button id="button-show-info">ПОИСК</button>
+            <div id="anchors">
+                <a href="#p-population">Численность</a>
+                <a href="#p-EmploymentRussia">Рабочая сила</a>
+                <a href="#p-EmploymentByTypeOfWork">Занятость</a>
+                <a href="#show-two-type-charts">Рабочие места</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="show-info">
+    
+        {% include "map/info_map.html" %}
+
+    </div>
+
+
+{% endblock %}
+{% block scripts%}
+    <!-- подключение jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- подключение selext2 -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+    <!-- подключение chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="{% static 'map/js/all_russia.js' %}"></script>
+    <script src="{% static 'map/js/charts.js' %}"></script>
+    <script src="{% static 'map/js/buttons_on_map.js' %}"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var yearsPopulation = `{{ yearsPopulation|safe }}`;
+            var total = `{{ total|safe }}`;
+            var urban = `{{ urban|safe }}`;
+            var rural = `{{ rural|safe }}`;
+
+            var yearswithmonthEmployment = `{{ yearswithmonthEmployment|safe }}`;
+            // var yearsEmployment = `{{ yearsEmployment|safe }}`;
+            var monthEmployment = `{{ monthEmployment|safe }}`;
+            var labor_force = `{{ labor_force|safe }}`;
+            var employ_people = `{{ employ_people|safe }}`;
+            var unemployed_people = `{{ unemployed_people|safe }}`;
+            //EmploymentByTypeOfWork
+            var nameTypeOfWork = `{{ nameTypeOfWork|safe }}`;
+            var year_2017 = `{{ year_2017|safe }}`;
+            var year_2018 = `{{ year_2018|safe }}`;
+            var year_2019 = `{{ year_2019|safe }}`;
+            var year_2020 = `{{ year_2020|safe }}`;
+            var year_2021 = `{{ year_2021|safe }}`;
+            var year_2022 = `{{ year_2022|safe }}`;
+            var year_2023 = `{{ year_2023|safe }}`;
+            //WorkInSpecialityHE
+            var nameSpecialityHE = `{{ nameSpecialityHE|safe }}`;
+            var all_people_she = `{{ all_people_she|safe }}`;
+            var works_by_profession = `{{ works_by_profession|safe }}`;
+            var works_not_by_profession = `{{ works_not_by_profession|safe }}`;
+            //WorkingGraduatesHE
+            var nameGraduatesHE = `{{ nameGraduatesHE|safe }}`;
+            var all_people_ghe = `{{ all_people_ghe|safe }}`;
+            var working = `{{ working|safe }}`;
+            var not_working = `{{ not_working|safe }}`;
+            //WorkInSpecialitySPO
+            var nameSpecialitySPO = `{{ nameSpecialitySPO|safe }}`;
+            var all_people_sspo = `{{ all_people_sspo|safe }}`;
+            var works_by_profession_spo = `{{ works_by_profession_spo|safe }}`;
+            var works_not_by_profession_spo = `{{ works_not_by_profession_spo|safe }}`;
+            //WorkingGraduatesSPO
+            var nameGraduatesSPO = `{{ nameGraduatesSPO|safe }}`;
+            var all_people_gspo = `{{ all_people_gspo|safe }}`;
+            var working_spo = `{{ working_spo|safe }}`;
+            var not_working_spo = `{{ not_working_spo|safe }}`;
+
+            // Обновляем графики
+            updateChartDataPopulation(yearsPopulation, total, urban, rural);
+            updateChartDataEmploymentRussia(yearswithmonthEmployment, monthEmployment, labor_force, employ_people, unemployed_people);
+            updateChartEmploymentByTypeOfWork(nameTypeOfWork, year_2017, year_2018, year_2019, year_2020, year_2021, year_2022, year_2023);
+            updateChartWorkInSpecialityHE(nameSpecialityHE, all_people_she, works_by_profession, works_not_by_profession);
+            updateChartWorkingGraduatesHE(nameGraduatesHE, all_people_ghe, working, not_working);
+            updateChartWorkInSpecialitySPO(nameSpecialitySPO, all_people_sspo, works_by_profession_spo, works_not_by_profession_spo);
+            updateChartWorkingGraduatesSPO(nameGraduatesSPO, all_people_gspo, working_spo, not_working_spo)
+        });
+    </script>
+
+
+{% endblock%}
