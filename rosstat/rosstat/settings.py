@@ -129,3 +129,6 @@ STACTICFILES_DIRS = [
 
 #Ссылка на стили для форм
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'main'
+LOGIN_URL = 'login'
