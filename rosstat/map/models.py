@@ -34,3 +34,34 @@ class PopulationData(models.Model):
             str: Строка в формате "Год - Численность населения"
         """
         return f"{self.year} - {self.total_population}"
+    
+
+class EmploymentRussia(models.Model):
+    """Модель для хранения данных о занятости и безработице в России по месяцам.
+    
+    Содержит статистику по рабочей силе, занятости и безработице с помесячной детализацией.
+    Все процентные показатели рассчитываются относительно общей численности рабочей силы.
+
+    Attributes:
+        year (int): Год данных (например, 2023)
+        month (str): Название месяца (например, "Январь")
+        labor_force (int): Общая численность рабочей силы (тыс. человек)
+        employ_people (int): Численность занятого населения (тыс. человек)
+        unemployed_people (int): Численность безработных (тыс. человек)
+        percent_in_labor (float): Уровень участия в рабочей силе (% от трудоспособного населения)
+        percent_employed (float): Уровень занятости (% от рабочей силы)
+        percent_unemployed (float): Уровень безработицы (% от рабочей силы)
+    """
+    year = models.IntegerField(verbose_name="Год")
+    month = models.CharField(max_length=20, verbose_name="Месяц")
+    labor_force = models.FloatField(verbose_name="Рабочая сила")
+    employ_people = models.FloatField(verbose_name="Занятые")
+    unemployed_people = models.FloatField(verbose_name="Безработные")
+    percent_in_labor = models.FloatField(verbose_name="Уровень участия в составе рабочей силы, в %")
+    percent_employed = models.FloatField(verbose_name="Уровень занятости, в %")
+    percent_unemployed = models.FloatField(verbose_name="Уровень безработицы, в %")
+
+    class Meta:
+ 
+        verbose_name = "Данные о занятости населения"
+        verbose_name_plural = "Данные о занятости населения"
