@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import PopulationData , EmploymentRussia
+from .models import *
 
 
-# Регистрация с кастомизацией
+#---Регистрация с кастомизацией
 @admin.register(PopulationData)
 class PopulationDataAdmin(admin.ModelAdmin):
     list_display = list_display = ['year', 'total_population', 'urban_population', 
@@ -22,3 +22,26 @@ class EmploymentRussiaAdmin(admin.ModelAdmin):
     search_fields = ('year',)  
     ordering = ('-year',) 
 
+
+#---Занятость по годам для каждого вида деятельности
+
+class EmploymentByTypeOfWorkInline(admin.TabularInline):
+    """Инлайн для отображения значений по годам."""
+    model = EmploymentByTypeOfWork
+    extra = 1 # дополнительная строка
+    fields = ['year', 'value']
+    ordering = ['year']
+
+@admin.register(EconomicActivityType)
+class EconomicActivityTypeAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    search_fields = ['name']
+    inlines = [EmploymentByTypeOfWorkInline]
+
+
+@admin.register(EmploymentByTypeOfWork)
+class EmploymentByTypeOfWorkAdmin(admin.ModelAdmin):
+    list_display = ['activity_type', 'year', 'value']
+    list_filter = ['year', 'activity_type']
+    search_fields = ['activity_type__name']
+    # list_editable = ['value']

@@ -65,3 +65,51 @@ class EmploymentRussia(models.Model):
  
         verbose_name = "Данные о занятости населения"
         verbose_name_plural = "Данные о занятости населения"
+
+
+"""
+Нужно обработать таблицы для
+EmploymentByTypeOfWork
+JobsByTypeOfWork
+WorkInSpecialityHE
+WorkInSpecialitySPO
+WorkingGraduatesHE
+WorkingGraduatesSPO
+"""
+
+class EconomicActivityType(models.Model):
+    """Справочник видов экономической деятельности."""
+    name = models.CharField(max_length=255, unique=True, verbose_name="Название")
+    
+    class Meta:
+        verbose_name = "Вид экономической деятельности"
+        verbose_name_plural = "Виды экономической деятельности"
+        ordering = ['name']
+    
+    def __str__(self):
+        return self.name
+
+class EmploymentByTypeOfWork(models.Model):
+    """Значения занятости по годам для каждого вида деятельности."""
+    
+    activity_type = models.ForeignKey(
+        EconomicActivityType, 
+        on_delete=models.CASCADE,
+        related_name='employment_values', # имя для обратной связи
+        verbose_name="Вид деятельности" # Человекочитаемое имя
+    )
+    year = models.PositiveSmallIntegerField(verbose_name="Год")
+    value = models.FloatField(verbose_name="Численность занятых (тыс. человек)")
+    
+    class Meta:
+        verbose_name = "Занятость по годам"
+        verbose_name_plural = "Занятость по годам"
+        unique_together = ['activity_type', 'year']  # Запретить дубликаты
+        ordering = ['activity_type', 'year']
+        indexes = [
+            models.Index(fields=['activity_type', 'year']),
+        ]
+    
+    def __str__(self):
+        return f"{self.activity_type.name} - {self.year}: {self.value}"
+
