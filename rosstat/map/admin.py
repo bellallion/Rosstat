@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import *
 
 
-#---Регистрация с кастомизацией
+#---Численность населения
 @admin.register(PopulationData)
 class PopulationDataAdmin(admin.ModelAdmin):
     list_display = list_display = ['year', 'total_population', 'urban_population', 
@@ -11,6 +11,7 @@ class PopulationDataAdmin(admin.ModelAdmin):
     search_fields = ('year',)  # поля для поиска
     ordering = ('-year',)  # сортировка
 
+#---занятость и безработица в России по месяцам
 @admin.register(EmploymentRussia)
 class EmploymentRussiaAdmin(admin.ModelAdmin):
     list_display = list_display = ['year', 'month', 'labor_force', 
@@ -24,7 +25,6 @@ class EmploymentRussiaAdmin(admin.ModelAdmin):
 
 
 #---Занятость по годам для каждого вида деятельности
-
 class EmploymentByTypeOfWorkInline(admin.TabularInline):
     """Инлайн для отображения значений по годам."""
     model = EmploymentByTypeOfWork
@@ -32,13 +32,14 @@ class EmploymentByTypeOfWorkInline(admin.TabularInline):
     fields = ['year', 'value']
     ordering = ['year']
 
+#---Справочник видов экономической деятельности
 @admin.register(EconomicActivityType)
 class EconomicActivityTypeAdmin(admin.ModelAdmin):
     list_display = ['name']
     search_fields = ['name']
     inlines = [EmploymentByTypeOfWorkInline]
 
-
+#---Значения занятости по годам для каждого вида деятельности
 @admin.register(EmploymentByTypeOfWork)
 class EmploymentByTypeOfWorkAdmin(admin.ModelAdmin):
     list_display = ['activity_type', 'year', 'value']
