@@ -51,4 +51,10 @@ class WorkingGraduatesSPOSerializer(serializers.ModelSerializer):
         model = WorkingGraduatesSPO
         fields = '__all__'
 
+#---Занятость выпускников вузов. Среднее профессиональное образование
+class WorkingGraduatesSPOSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WorkingGraduatesSPO
+        fields = '__all__'
+
 

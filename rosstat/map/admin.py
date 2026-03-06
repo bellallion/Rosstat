@@ -93,6 +93,14 @@ class EconomicActivityTypeAdmin(admin.ModelAdmin):
                WorkingGraduatesHEInline, WorkingGraduatesSPOInline]
     
 #---Трудоустройство выпускников по специальностям. Высшее образование
+class WorkInSpecialityHEInline(admin.TabularInline):
+    model = WorkInSpecialityHE
+    extra = 1
+    fields = ['special_type', 'year', 'all_people', 'works_by_profession', 'works_not_by_profession', 
+                    'works_by_profession_percent', 'works_not_by_profession_percent']
+    ordering = ['year']
+
+
 @admin.register(WorkInSpecialityHE)
 class WorkInSpecialityHEAdmin(admin.ModelAdmin):
     list_display = ['special_type', 'year', 'all_people', 'works_by_profession', 'works_not_by_profession', 
@@ -107,4 +115,4 @@ class WorkInSpecialityHEAdmin(admin.ModelAdmin):
 class SpecialtyTypeAdmin(admin.ModelAdmin):
     list_display = ['name']
     search_fields = ['name']
-    inlines = []
+    inlines = [WorkInSpecialityHEInline]
