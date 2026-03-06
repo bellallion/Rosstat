@@ -4,7 +4,8 @@ from map.models import (
     EmploymentRussia, 
     EconomicActivityType,
     EmploymentByTypeOfWork,
-    JobsByTypeOfWork
+    JobsByTypeOfWork,
+    WorkingGraduatesHE
     )
 
 #---Численность населения
@@ -35,6 +36,12 @@ class EmploymentByTypeOfWorkSerializer(serializers.ModelSerializer):
 class JobsByTypeOfWorkSerializer(serializers.ModelSerializer):
     class Meta:
         model = JobsByTypeOfWork
+        fields = '__all__'
+
+#---Занятость выпускников вузов. Высшее образование
+class WorkingGraduatesHESerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WorkingGraduatesHE
         fields = '__all__'
 
 
