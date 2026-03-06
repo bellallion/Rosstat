@@ -191,7 +191,7 @@ class JobsByTypeOfWork(models.Model):
     
     
 class WorkingGraduatesHE(models.Model):
-    """Модель данных о занятости выпускников вузов  """
+    """Модель данных о занятости выпускников вузов. Высшее образование"""
 
     activity_type = models.ForeignKey(
         EconomicActivityType, 
@@ -237,6 +237,61 @@ class WorkingGraduatesHE(models.Model):
     class Meta:
         verbose_name = "Занятость выпускников. Высшее образование"
         verbose_name_plural = "Занятость выпускников. Высшее образование"
+        ordering = ['-year', 'activity_type']
+        unique_together = ['activity_type', 'year']
+
+    def __str__(self):
+
+        return f"{self.activity_type.name}: {self.all_people}"
+    
+class WorkingGraduatesSPO(models.Model):
+    """Модель данных о занятости выпускников вузов. 
+    Средние профессиональное образование"""
+
+    activity_type = models.ForeignKey(
+        EconomicActivityType, 
+        on_delete=models.CASCADE,
+        related_name='work_grad_spo_values', # имя для обратной связи
+        verbose_name="Вид отрасли" 
+    )
+    year = models.PositiveSmallIntegerField(
+        verbose_name="Год"
+    )
+    all_people = models.FloatField(
+        verbose_name="Общая численность выпускников (человек)",
+        help_text="Общая численность выпускников",
+        null=True,
+        blank=True
+    )
+
+    working = models.FloatField(
+        verbose_name="Занятые (человек)",
+        help_text="Число занятых выпускников",
+        null=True,
+        blank=True
+    )
+    not_working = models.FloatField(
+        verbose_name="Безработные (человек)",
+        help_text="Число безработных выпускников",
+        null=True,
+        blank=True
+    )
+    can_not_work = models.FloatField(
+        verbose_name="Не входящие в рабочую силу (человек)",
+        help_text="Число выпускников, не входящих в состав рабочей силы",
+        null=True,
+        blank=True
+    )
+    employment_percent = models.FloatField(
+        verbose_name="Уровень занятости (%)",
+        help_text="Доля занятых среди рабочей силы",
+        null=True,
+        blank=True
+    )
+
+    class Meta:
+        verbose_name = "Занятость выпускников. Среднее профессиональное образование"
+        verbose_name_plural = "Занятость выпускников. Среднее профессиональное образование"
         ordering = ['-year', 'activity_type']
         unique_together = ['activity_type', 'year']
 

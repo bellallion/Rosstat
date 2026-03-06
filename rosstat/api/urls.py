@@ -7,7 +7,8 @@ from .views import(
     EconomicActivityTypeApiView,
     EmploymentByTypeOfWorkApiView,
     JobsByTypeOfWorkApiView,
-    WorkingGraduatesHEApiView
+    WorkingGraduatesHEApiView,
+    WorkingGraduatesSPOApiView
     )
 
 router = routers.DefaultRouter()
@@ -16,7 +17,8 @@ router.register(r'employrus', EmploymentRussiaApiView)
 router.register(r'activitytype', EconomicActivityTypeApiView)
 router.register(r'employtypeofwork', EmploymentByTypeOfWorkApiView)
 router.register(r'jobsbytypework', JobsByTypeOfWorkApiView)
-router.register(r'workgrad/he', WorkingGraduatesHEApiView)
+router.register(r'he/workgrad', WorkingGraduatesHEApiView)
+router.register(r'spo/workgrad', WorkingGraduatesSPOApiView)
 
 
 urlpatterns = [

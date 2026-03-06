@@ -69,10 +69,25 @@ class WorkingGraduatesHEAdmin(admin.ModelAdmin):
     search_fields = ['activity_type__name']
     # list_editable = ['value']
 
+#---Занятость выпускников вузов. Среднее профессиональное образование
+class WorkingGraduatesSPOInline(admin.TabularInline):
+    model = WorkingGraduatesSPO
+    extra = 1
+    fields = ['year', 'all_people', 'working', 'not_working', 'can_not_work', 'employment_percent']
+    ordering = ['year']
+
+@admin.register(WorkingGraduatesSPO)
+class WorkingGraduatesSPOAdmin(admin.ModelAdmin):
+    list_display = ['activity_type', 'year', 'all_people', 'working', 'not_working', 'can_not_work', 'employment_percent']
+    list_filter = ['year', 'activity_type']
+    search_fields = ['activity_type__name']
+    # list_editable = ['value']
+
 
 #---Справочник видов экономической деятельности
 @admin.register(EconomicActivityType)
 class EconomicActivityTypeAdmin(admin.ModelAdmin):
     list_display = ['name']
     search_fields = ['name']
-    inlines = [EmploymentByTypeOfWorkInline, JobsByTypeOfWorkInline, WorkingGraduatesHEInline]
+    inlines = [EmploymentByTypeOfWorkInline, JobsByTypeOfWorkInline, 
+               WorkingGraduatesHEInline, WorkingGraduatesSPOInline]
