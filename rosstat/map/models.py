@@ -69,7 +69,6 @@ class EmploymentRussia(models.Model):
 
 """
 Нужно обработать таблицы для
-EmploymentByTypeOfWork
 JobsByTypeOfWork
 WorkInSpecialityHE
 WorkInSpecialitySPO
@@ -113,3 +112,36 @@ class EmploymentByTypeOfWork(models.Model):
     def __str__(self):
         return f"{self.activity_type.name} - {self.year}: {self.value}"
 
+class JobsByTypeOfWork(models.Model):
+    """Модель данных о динамике рабочих мест по видам экономической деятельности.
+    
+    Содержит информацию о создании и ликвидации рабочих мест в разрезе отраслей
+    за период с 2017 по 2021 годы. Данные представлены в абсолютных значениях.
+    """
+    activity_type = models.ForeignKey(
+        EconomicActivityType, 
+        on_delete=models.CASCADE,
+        related_name='jobs_values', # имя для обратной связи
+        verbose_name="Вид деятельности" 
+    )
+    year = models.PositiveSmallIntegerField(verbose_name="Год")
+    created = models.FloatField(
+        verbose_name="Создано рабочих мест (тыс.)",
+        help_text="Количество созданных рабочих мест"
+    )
+    liquidated = models.FloatField(
+        verbose_name="Ликвидировано рабочих мест (тыс.)",
+        help_text="Количество ликвидированных рабочих мест"
+    )
+    
+    class Meta:
+        verbose_name = "Данные о рабочих местах по годам"
+        verbose_name_plural = "Данные о рабочих местах по годам"
+        unique_together = ['activity_type', 'year']  # запрет дубликатов
+        ordering = ['activity_type', 'year']
+        indexes = [
+            models.Index(fields=['activity_type', 'year']),
+        ]
+    
+    def __str__(self):
+        return f"{self.activity_type.name} - {self.year}: +{self.created} / -{self.liquidated}"
