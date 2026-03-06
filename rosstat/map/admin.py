@@ -40,7 +40,7 @@ class EmploymentByTypeOfWorkAdmin(admin.ModelAdmin):
     search_fields = ['activity_type__name']
     # list_editable = ['value']
 
-#---Занятость по годам для каждого вида деятельности
+#---Данные о рабочих местах по годам
 class JobsByTypeOfWorkInline(admin.TabularInline):
     """Инлайн для отображения значений по годам."""
     model = JobsByTypeOfWork
@@ -48,7 +48,6 @@ class JobsByTypeOfWorkInline(admin.TabularInline):
     fields = ['year', 'created', 'liquidated']
     ordering = ['year']
 
-#---Данные о рабочих местах по годам
 @admin.register(JobsByTypeOfWork)
 class JobsByTypeOfWorkAdmin(admin.ModelAdmin):
     list_display = ['activity_type', 'year', 'created', 'liquidated']
@@ -56,9 +55,24 @@ class JobsByTypeOfWorkAdmin(admin.ModelAdmin):
     search_fields = ['activity_type__name']
     # list_editable = ['value']
 
+#---Занятость выпускников вузов. Высшее образование
+class WorkingGraduatesHEInline(admin.TabularInline):
+    model = WorkingGraduatesHE
+    extra = 1
+    fields = ['year', 'all_people', 'working', 'not_working', 'can_not_work', 'employment_percent']
+    ordering = ['year']
+
+@admin.register(WorkingGraduatesHE)
+class WorkingGraduatesHEAdmin(admin.ModelAdmin):
+    list_display = ['activity_type', 'year', 'all_people', 'working', 'not_working', 'can_not_work', 'employment_percent']
+    list_filter = ['year', 'activity_type']
+    search_fields = ['activity_type__name']
+    # list_editable = ['value']
+
+
 #---Справочник видов экономической деятельности
 @admin.register(EconomicActivityType)
 class EconomicActivityTypeAdmin(admin.ModelAdmin):
     list_display = ['name']
     search_fields = ['name']
-    inlines = [EmploymentByTypeOfWorkInline, JobsByTypeOfWorkInline]
+    inlines = [EmploymentByTypeOfWorkInline, JobsByTypeOfWorkInline, WorkingGraduatesHEInline]
