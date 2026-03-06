@@ -3,7 +3,8 @@ from map.models import (
     PopulationData, 
     EmploymentRussia, 
     EconomicActivityType,
-    EmploymentByTypeOfWork
+    EmploymentByTypeOfWork,
+    JobsByTypeOfWork
     )
 
 #---Численность населения
@@ -29,4 +30,11 @@ class EmploymentByTypeOfWorkSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmploymentByTypeOfWork
         fields = '__all__'
+
+#---Данные о рабочих местах по годам
+class JobsByTypeOfWorkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobsByTypeOfWork
+        fields = '__all__'
+
 
