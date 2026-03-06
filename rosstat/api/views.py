@@ -8,7 +8,9 @@ from map.models import (
     EmploymentByTypeOfWork,
     JobsByTypeOfWork,
     WorkingGraduatesHE,
-    WorkingGraduatesSPO
+    WorkingGraduatesSPO,
+    SpecialtyType,
+    WorkInSpecialityHE
     )
 from .serializer import (
     PopulationDataSerializer, 
@@ -17,10 +19,14 @@ from .serializer import (
     EmploymentByTypeOfWorkSerializer,
     JobsByTypeOfWorkSerializer,
     WorkingGraduatesHESerializer,
-    WorkingGraduatesSPOSerializer
+    WorkingGraduatesSPOSerializer,
+    SpecialtyTypeSerializer,
+    WorkInSpecialityHESerializer
     )
 
 # контроллеры
+
+#---------------------map-------------------------------------
 
 #---Численность населения
 
@@ -71,3 +77,23 @@ class WorkingGraduatesSPOApiView(viewsets.ModelViewSet):
     serializer_class = WorkingGraduatesSPOSerializer
     http_method_names = ['get']
 
+#---Справочник специальностей
+
+class SpecialtyTypeApiView(viewsets.ModelViewSet):
+    queryset = SpecialtyType.objects.all()
+    serializer_class = SpecialtyTypeSerializer
+    http_method_names = ['get']
+
+#---Трудоустройство выпускников по специальностям. Высшее образование
+
+class WorkInSpecialityHEApiView(viewsets.ModelViewSet):
+    queryset = WorkInSpecialityHE.objects.all()
+    serializer_class = WorkInSpecialityHESerializer
+    http_method_names = ['get']
+
+
+
+
+
+
+#---------------------regions-------------------------------------
