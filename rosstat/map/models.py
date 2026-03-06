@@ -6,14 +6,6 @@ class PopulationData(models.Model):
     
     Содержит информацию о общей численности, городском и сельском населении
     с разбивкой по годам.
-
-    Attributes:
-        year (int): Год сбора данных
-        total_population (float): Общая численность населения (млн человек)
-        urban_population (float): Численность городского населения (млн человек)
-        rural_population (float): Численность сельского населения (млн человек)
-        urban_percentage (float): Доля городского населения (%)
-        rural_percentage (float): Доля сельского населения (%)
     """
     year = models.IntegerField(verbose_name="Год")
     total_population = models.FloatField(verbose_name="Численность населения")
@@ -57,16 +49,6 @@ class EmploymentRussia(models.Model):
     
     Содержит статистику по рабочей силе, занятости и безработице с помесячной детализацией.
     Все процентные показатели рассчитываются относительно общей численности рабочей силы.
-
-    Attributes:
-        year (int): Год данных (например, 2023)
-        month (str): Название месяца (например, "Январь")
-        labor_force (int): Общая численность рабочей силы (тыс. человек)
-        employ_people (int): Численность занятого населения (тыс. человек)
-        unemployed_people (int): Численность безработных (тыс. человек)
-        percent_in_labor (float): Уровень участия в рабочей силе (% от трудоспособного населения)
-        percent_employed (float): Уровень занятости (% от рабочей силы)
-        percent_unemployed (float): Уровень безработицы (% от рабочей силы)
     """
     year = models.IntegerField(verbose_name="Год")
     month = models.CharField(max_length=20, verbose_name="Месяц")
@@ -107,13 +89,6 @@ class EmploymentRussia(models.Model):
         verbose_name_plural = "Данные о занятости населения"
 
 
-"""
-Нужно обработать таблицы для
-WorkInSpecialityHE
-WorkInSpecialitySPO
-WorkingGraduatesHE
-WorkingGraduatesSPO
-"""
 
 class EconomicActivityType(models.Model):
     """Справочник видов экономической деятельности."""
@@ -298,3 +273,71 @@ class WorkingGraduatesSPO(models.Model):
     def __str__(self):
 
         return f"{self.activity_type.name}: {self.all_people}"
+
+
+class SpecialtyType(models.Model):
+    """Справочник специальностей."""
+    name = models.CharField(max_length=255, unique=True, verbose_name="Название")
+    
+    class Meta:
+        verbose_name = "Специальность"
+        verbose_name_plural = "Специальности"
+        ordering = ['name']
+    
+    def __str__(self):
+        return self.name
+
+class WorkInSpecialityHE(models.Model):
+    """Модель данных о трудоустройстве выпускников по специальностям
+    Высшее образование"""
+
+    special_type = models.ForeignKey(
+        SpecialtyType, 
+        on_delete=models.CASCADE,
+        related_name='special_he_values', # имя для обратной связи
+        verbose_name="Специальность" 
+    )
+    year = models.PositiveSmallIntegerField(
+        verbose_name="Год"
+    )
+    all_people = models.FloatField(
+        verbose_name="Общая численность выпускников ",
+        help_text="Общая численность выпускников (тыс. человек)",
+        null=True,
+        blank=True
+    )
+
+    works_by_profession = models.FloatField(
+        verbose_name="Работающие по специальности",
+        help_text="Число выпускников, работающих по специальности (тыс. человек)",
+        null=True,
+        blank=True
+    )
+    works_not_by_profession = models.FloatField(
+        verbose_name="Работающие не по специальности",
+        help_text="Число выпускников, работающих не по специальности (тыс. человек)",
+        null=True,
+        blank=True
+    )
+    works_by_profession_percent = models.FloatField(
+        verbose_name="Доля работающих по специальности",
+        help_text="Число выпускников, работающих по специальности, %",
+        null=True,
+        blank=True
+    )
+    works_not_by_profession_percent = models.FloatField(
+        verbose_name="Доля не работающих по специальности",
+        help_text="Число выпускников, работающих не по специальности, %",
+        null=True,
+        blank=True
+    )
+
+    class Meta:
+        verbose_name = "Данные о выпускниках, работающих по специальности. Высшее образование"
+        verbose_name_plural = "Данные о выпускниках, работающих по специальности. Высшее образование"
+        ordering = ['-year', 'special_type']
+        unique_together = ['special_type', 'year']
+
+    def __str__(self):
+
+        return f"{self.special_type.name}: {self.all_people}"
