@@ -341,3 +341,59 @@ class WorkInSpecialityHE(models.Model):
     def __str__(self):
 
         return f"{self.special_type.name}: {self.all_people}"
+    
+
+class WorkInSpecialitySPO(models.Model):
+    """Модель данных о трудоустройстве выпускников по специальностям
+    Средние профессиональное образование"""
+
+    special_type = models.ForeignKey(
+        SpecialtyType, 
+        on_delete=models.CASCADE,
+        related_name='special_spo_values', # имя для обратной связи
+        verbose_name="Специальность" 
+    )
+    year = models.PositiveSmallIntegerField(
+        verbose_name="Год"
+    )
+    all_people = models.FloatField(
+        verbose_name="Общая численность выпускников ",
+        help_text="Общая численность выпускников (тыс. человек)",
+        null=True,
+        blank=True
+    )
+
+    works_by_profession = models.FloatField(
+        verbose_name="Работающие по специальности",
+        help_text="Число выпускников, работающих по специальности (тыс. человек)",
+        null=True,
+        blank=True
+    )
+    works_not_by_profession = models.FloatField(
+        verbose_name="Работающие не по специальности",
+        help_text="Число выпускников, работающих не по специальности (тыс. человек)",
+        null=True,
+        blank=True
+    )
+    works_by_profession_percent = models.FloatField(
+        verbose_name="Доля работающих по специальности",
+        help_text="Число выпускников, работающих по специальности, %",
+        null=True,
+        blank=True
+    )
+    works_not_by_profession_percent = models.FloatField(
+        verbose_name="Доля не работающих по специальности",
+        help_text="Число выпускников, работающих не по специальности, %",
+        null=True,
+        blank=True
+    )
+
+    class Meta:
+        verbose_name = "Данные о выпускниках, работающих по специальности. Средние профессиональное образование"
+        verbose_name_plural = "Данные о выпускниках, работающих по специальности. Средние профессиональное образование"
+        ordering = ['-year', 'special_type']
+        unique_together = ['special_type', 'year']
+
+    def __str__(self):
+
+        return f"{self.special_type.name}: {self.all_people}"

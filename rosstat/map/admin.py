@@ -109,10 +109,27 @@ class WorkInSpecialityHEAdmin(admin.ModelAdmin):
     search_fields = ['special_type__name']
     # list_editable = ['value']
 
+#---Трудоустройство выпускников по специальностям. Средние профессиональное образование
+class WorkInSpecialitySPOInline(admin.TabularInline):
+    model = WorkInSpecialitySPO
+    extra = 1
+    fields = ['special_type', 'year', 'all_people', 'works_by_profession', 'works_not_by_profession', 
+                    'works_by_profession_percent', 'works_not_by_profession_percent']
+    ordering = ['year']
+
+
+@admin.register(WorkInSpecialitySPO)
+class WorkInSpecialitySPOAdmin(admin.ModelAdmin):
+    list_display = ['special_type', 'year', 'all_people', 'works_by_profession', 'works_not_by_profession', 
+                    'works_by_profession_percent', 'works_not_by_profession_percent']
+    list_filter = ['year', 'special_type']
+    search_fields = ['special_type__name']
+    # list_editable = ['value']
+
     
 #---Справочник специальностей
 @admin.register(SpecialtyType)
 class SpecialtyTypeAdmin(admin.ModelAdmin):
     list_display = ['name']
     search_fields = ['name']
-    inlines = [WorkInSpecialityHEInline]
+    inlines = [WorkInSpecialityHEInline, WorkInSpecialitySPOInline]

@@ -10,7 +10,8 @@ from .views import(
     WorkingGraduatesHEApiView,
     WorkingGraduatesSPOApiView,
     SpecialtyTypeApiView,
-    WorkInSpecialityHEApiView
+    WorkInSpecialityHEApiView,
+    WorkInSpecialitySPOApiView
     )
 
 router = routers.DefaultRouter()
@@ -23,6 +24,7 @@ router.register(r'he/workgrad', WorkingGraduatesHEApiView)
 router.register(r'spo/workgrad', WorkingGraduatesSPOApiView)
 router.register(r'specialty', SpecialtyTypeApiView)
 router.register(r'he/workspecial', WorkInSpecialityHEApiView)
+router.register(r'spo/workspecial', WorkInSpecialitySPOApiView)
 
 
 

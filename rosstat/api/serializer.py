@@ -8,7 +8,8 @@ from map.models import (
     WorkingGraduatesHE,
     WorkingGraduatesSPO,
     SpecialtyType,
-    WorkInSpecialityHE
+    WorkInSpecialityHE,
+    WorkInSpecialitySPO
     )
 
 #---Численность населения
@@ -65,4 +66,9 @@ class WorkInSpecialityHESerializer(serializers.ModelSerializer):
         model = WorkInSpecialityHE
         fields = '__all__'
 
+#---Трудоустройство выпускников по специальностям. Средние профессиональное образование
+class WorkInSpecialitySPOSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WorkInSpecialitySPO
+        fields = '__all__'
 
