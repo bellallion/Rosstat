@@ -28,11 +28,13 @@ from .serializer import (
 
 from regions.models import (
     RegionsRF,
-    LaborForceRegion
+    LaborForceRegion,
+    PopulationRegion
     )
 from .serializer import (
     RegionsRFSerializer,
-    LaborForceRegionSerializer
+    LaborForceRegionSerializer,
+    PopulationRegionSerializer
     )
 
 # контроллеры
@@ -124,4 +126,11 @@ class RegionsRFApiView(viewsets.ModelViewSet):
 class LaborForceRegionApiView(viewsets.ModelViewSet):
     queryset = LaborForceRegion.objects.all()
     serializer_class = LaborForceRegionSerializer
+    http_method_names = ['get']
+
+#---Численность населения по регионам РФ
+
+class PopulationRegionApiView(viewsets.ModelViewSet):
+    queryset = PopulationRegion.objects.all()
+    serializer_class = PopulationRegionSerializer
     http_method_names = ['get']

@@ -233,26 +233,26 @@ class WorkingGraduatesSPO(models.Model):
         verbose_name="Год"
     )
     all_people = models.FloatField(
-        verbose_name="Общая численность выпускников (человек)",
+        verbose_name="Общая численность выпускников (тыс.чел.)",
         help_text="Общая численность выпускников",
         null=True,
         blank=True
     )
 
     working = models.FloatField(
-        verbose_name="Занятые (человек)",
+        verbose_name="Занятые (тыс.чел.)",
         help_text="Число занятых выпускников",
         null=True,
         blank=True
     )
     not_working = models.FloatField(
-        verbose_name="Безработные (человек)",
+        verbose_name="Безработные (тыс.чел.)",
         help_text="Число безработных выпускников",
         null=True,
         blank=True
     )
     can_not_work = models.FloatField(
-        verbose_name="Не входящие в рабочую силу (человек)",
+        verbose_name="Не входящие в рабочую силу (тыс.чел.)",
         help_text="Число выпускников, не входящих в состав рабочей силы",
         null=True,
         blank=True

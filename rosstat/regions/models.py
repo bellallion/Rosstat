@@ -22,11 +22,31 @@ class LaborForceRegion(models.Model):
         verbose_name="Регион"
     )
     year = models.SmallIntegerField(verbose_name="год")
-    value = models.FloatField(verbose_name="Численность рабочей силы")
+    value = models.FloatField(verbose_name="Численность рабочей силы (тыс.чел.)")
 
     class Meta:
         verbose_name = "Численность рабочей силы по субъектам Российской Федерации"
         verbose_name_plural = "Численность рабочей силы по субъектам Российской Федерации"
+
+    def __str__(self):
+
+        return f"{self.region.name}-{self.year} : {self.value}"
+    
+
+class PopulationRegion(models.Model):
+    """Модель данных о численности населения по регионам РФ  """
+    region = models.ForeignKey(
+        RegionsRF,
+        on_delete=models.CASCADE,
+        related_name='population',
+        verbose_name="Регион"
+    )
+    year = models.SmallIntegerField(verbose_name="год")
+    value = models.FloatField(verbose_name="Численность населения (тыс.чел.)", help_text="Численность населения")
+
+    class Meta:
+        verbose_name = "Численность населения по субъектам Российской Федерации"
+        verbose_name_plural = "Численность населения по субъектам Российской Федерации"
 
     def __str__(self):
 

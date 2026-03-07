@@ -14,7 +14,8 @@ from map.models import (
 
 from regions.models import (
     LaborForceRegion,
-    RegionsRF
+    RegionsRF,
+    PopulationRegion
     )
 
 #---Численность населения
@@ -89,4 +90,10 @@ class RegionsRFSerializer(serializers.ModelSerializer):
 class LaborForceRegionSerializer(serializers.ModelSerializer):
     class Meta:
         model = LaborForceRegion
+        fields = '__all__'
+
+#---Численность населения по регионам РФ
+class PopulationRegionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PopulationRegion
         fields = '__all__'
