@@ -3,7 +3,7 @@ from django.db import models
 class RegionsRF(models.Model):
     """Справочник регионов России"""
     name = models.CharField(max_length=255, unique=True, verbose_name="Название региона")
-    code = models.SmallIntegerField(verbose_name="Код региона")
+    code = models.SmallIntegerField(verbose_name="Код региона", help_text="Код ОКАТО региона") 
     
     class Meta:
         verbose_name = "Регион"
@@ -30,4 +30,4 @@ class LaborForceRegion(models.Model):
 
     def __str__(self):
 
-        return f"{self.regionrf.name}-{self.year} : {self.value}"
+        return f"{self.region.name}-{self.year} : {self.value}"
