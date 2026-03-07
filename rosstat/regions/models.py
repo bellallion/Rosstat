@@ -62,11 +62,30 @@ class WorkForceLevel(models.Model):
         verbose_name="Регион"
     )
     year = models.SmallIntegerField(verbose_name="год")
-    value = models.FloatField(verbose_name="участия в рабочей силе по регионам РФ (%)", help_text="участия в рабочей силе по регионам РФ")
+    value = models.FloatField(verbose_name="Уровень участия в рабочей силе по регионам РФ (%)", help_text="Уровень участия в рабочей силе по регионам РФ")
 
     class Meta:
         verbose_name = "Уровень участия в рабочей силе по регионам РФ"
         verbose_name_plural = "Уровень участия в рабочей силе по регионам РФ"
+
+    def __str__(self):
+
+        return f"{self.region.name}-{self.year} : {self.value}"
+
+class WorkForceHE(models.Model):
+    """Модель данных о доле работников с высшим образованием по регионам РФ """
+    region = models.ForeignKey(
+        RegionsRF,
+        on_delete=models.CASCADE,
+        related_name='workforce_he',
+        verbose_name="Регион"
+    )
+    year = models.SmallIntegerField(verbose_name="год")
+    value = models.FloatField(verbose_name="Доля работников с высшим образованием по регионам РФ (%)", help_text="Доля работников с высшим образованием по регионам РФ")
+
+    class Meta:
+        verbose_name = "Доля работников с высшим образованием по регионам РФ"
+        verbose_name_plural = "Доля работников с высшим образованием по регионам РФ"
 
     def __str__(self):
 

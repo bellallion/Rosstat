@@ -30,13 +30,15 @@ from regions.models import (
     RegionsRF,
     LaborForceRegion,
     PopulationRegion,
-    WorkForceLevel
+    WorkForceLevel,
+    WorkForceHE
     )
 from .serializer import (
     RegionsRFSerializer,
     LaborForceRegionSerializer,
     PopulationRegionSerializer,
-    WorkForceLevelSerializer
+    WorkForceLevelSerializer,
+    WorkForceHESerializer
     )
 
 # контроллеры
@@ -142,4 +144,11 @@ class PopulationRegionApiView(viewsets.ModelViewSet):
 class WorkForceLevelApiView(viewsets.ModelViewSet):
     queryset = WorkForceLevel.objects.all()
     serializer_class = WorkForceLevelSerializer
+    http_method_names = ['get']
+
+#---Доля работников с высшим образованием по регионам РФ
+
+class WorkForceHEApiView(viewsets.ModelViewSet):
+    queryset = WorkForceHE.objects.all()
+    serializer_class = WorkForceHESerializer
     http_method_names = ['get']

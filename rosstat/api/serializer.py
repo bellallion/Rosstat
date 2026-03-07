@@ -16,7 +16,8 @@ from regions.models import (
     LaborForceRegion,
     RegionsRF,
     PopulationRegion,
-    WorkForceLevel
+    WorkForceLevel,
+    WorkForceHE
     )
 
 #---Численность населения
@@ -103,4 +104,10 @@ class PopulationRegionSerializer(serializers.ModelSerializer):
 class WorkForceLevelSerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkForceLevel
+        fields = '__all__'
+
+#---Доля работников с высшим образованием по регионам РФ
+class WorkForceHESerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WorkForceHE
         fields = '__all__'

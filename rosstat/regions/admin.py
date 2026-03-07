@@ -47,6 +47,20 @@ class WorkForceLevelAdmin(admin.ModelAdmin):
     search_fields = ['region__name']
     # list_editable = ['value']
 
+#---Доля работников с высшим образованием по регионам РФ
+class WorkForceHEInline(admin.TabularInline):
+    model = WorkForceHE
+    extra = 1
+    fields = ['region', 'year', 'value']
+    ordering = ['year']
+
+
+@admin.register(WorkForceHE)
+class WorkForceHEAdmin(admin.ModelAdmin):
+    list_display = ['region', 'year', 'value']
+    list_filter = ['year', 'region']
+    search_fields = ['region__name']
+    # list_editable = ['value']
     
 #---Справочник регионов РФ
 @admin.register(RegionsRF)
@@ -54,4 +68,4 @@ class RegionsRFAdmin(admin.ModelAdmin):
     list_display = ['name', 'code']
     search_fields = ['name', 'code']
     inlines = [LaborForceRegionInline, PopulationRegionInline,
-               WorkForceLevelInline]
+               WorkForceLevelInline, WorkForceHEInline]
