@@ -14,6 +14,11 @@ from .views import(
     WorkInSpecialitySPOApiView
     )
 
+from .views import( 
+    RegionsRFApiView,
+    LaborForceRegionApiView
+    )
+
 router = routers.DefaultRouter()
 router.register(r'populationdata', PopulationDataApiView)
 router.register(r'employrus', EmploymentRussiaApiView)
@@ -25,6 +30,9 @@ router.register(r'spo/workgrad', WorkingGraduatesSPOApiView)
 router.register(r'specialty', SpecialtyTypeApiView)
 router.register(r'he/workspecial', WorkInSpecialityHEApiView)
 router.register(r'spo/workspecial', WorkInSpecialitySPOApiView)
+
+router.register(r'regions', RegionsRFApiView)
+router.register(r'laborforce', LaborForceRegionApiView)
 
 
 

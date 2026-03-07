@@ -12,6 +12,11 @@ from map.models import (
     WorkInSpecialitySPO
     )
 
+from regions.models import (
+    LaborForceRegion,
+    RegionsRF
+    )
+
 #---Численность населения
 class PopulationDataSerializer(serializers.ModelSerializer):
     class Meta:
@@ -72,3 +77,16 @@ class WorkInSpecialitySPOSerializer(serializers.ModelSerializer):
         model = WorkInSpecialitySPO
         fields = '__all__'
 
+#----------------regions
+
+#---Справочник регионов РФ
+class RegionsRFSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RegionsRF
+        fields = '__all__'
+
+#---Численность рабочей силы по регионам РФ
+class LaborForceRegionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LaborForceRegion
+        fields = '__all__'

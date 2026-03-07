@@ -26,6 +26,15 @@ from .serializer import (
     WorkInSpecialitySPOSerializer
     )
 
+from regions.models import (
+    RegionsRF,
+    LaborForceRegion
+    )
+from .serializer import (
+    RegionsRFSerializer,
+    LaborForceRegionSerializer
+    )
+
 # контроллеры
 
 #---------------------map-------------------------------------
@@ -102,3 +111,17 @@ class WorkInSpecialitySPOApiView(viewsets.ModelViewSet):
 
 
 #---------------------regions-------------------------------------
+
+#---Справочник регионов РФ
+
+class RegionsRFApiView(viewsets.ModelViewSet):
+    queryset = RegionsRF.objects.all()
+    serializer_class = RegionsRFSerializer
+    http_method_names = ['get']
+
+#---Численность рабочей силы по регионам РФ
+
+class LaborForceRegionApiView(viewsets.ModelViewSet):
+    queryset = LaborForceRegion.objects.all()
+    serializer_class = LaborForceRegionSerializer
+    http_method_names = ['get']

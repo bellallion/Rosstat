@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import *
 
-#---Трудоустройство выпускников по специальностям. Средние профессиональное образование
+#---Численность рабочей силы по регионам РФ
 class LaborForceRegionInline(admin.TabularInline):
     model = LaborForceRegion
     extra = 1
@@ -17,7 +17,7 @@ class LaborForceRegionAdmin(admin.ModelAdmin):
     # list_editable = ['value']
 
     
-#---Справочник специальностей
+#---Справочник регионов РФ
 @admin.register(RegionsRF)
 class RegionsRFAdmin(admin.ModelAdmin):
     list_display = ['name', 'code']
