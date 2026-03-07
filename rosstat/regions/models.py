@@ -51,3 +51,23 @@ class PopulationRegion(models.Model):
     def __str__(self):
 
         return f"{self.region.name}-{self.year} : {self.value}"
+
+
+class WorkForceLevel(models.Model):
+    """Модель данных об уровне участия в рабочей силе по регионам РФ  """
+    region = models.ForeignKey(
+        RegionsRF,
+        on_delete=models.CASCADE,
+        related_name='workforcelevel',
+        verbose_name="Регион"
+    )
+    year = models.SmallIntegerField(verbose_name="год")
+    value = models.FloatField(verbose_name="участия в рабочей силе по регионам РФ (%)", help_text="участия в рабочей силе по регионам РФ")
+
+    class Meta:
+        verbose_name = "Уровень участия в рабочей силе по регионам РФ"
+        verbose_name_plural = "Уровень участия в рабочей силе по регионам РФ"
+
+    def __str__(self):
+
+        return f"{self.region.name}-{self.year} : {self.value}"

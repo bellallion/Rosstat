@@ -11,7 +11,7 @@ from map.models import (
     WorkingGraduatesSPO,
     SpecialtyType,
     WorkInSpecialityHE,
-    WorkInSpecialitySPO
+    WorkInSpecialitySPO,
     )
 from .serializer import (
     PopulationDataSerializer, 
@@ -29,12 +29,14 @@ from .serializer import (
 from regions.models import (
     RegionsRF,
     LaborForceRegion,
-    PopulationRegion
+    PopulationRegion,
+    WorkForceLevel
     )
 from .serializer import (
     RegionsRFSerializer,
     LaborForceRegionSerializer,
-    PopulationRegionSerializer
+    PopulationRegionSerializer,
+    WorkForceLevelSerializer
     )
 
 # контроллеры
@@ -133,4 +135,11 @@ class LaborForceRegionApiView(viewsets.ModelViewSet):
 class PopulationRegionApiView(viewsets.ModelViewSet):
     queryset = PopulationRegion.objects.all()
     serializer_class = PopulationRegionSerializer
+    http_method_names = ['get']
+
+#---Уровень участия в рабочей силе по регионам РФ
+
+class WorkForceLevelApiView(viewsets.ModelViewSet):
+    queryset = WorkForceLevel.objects.all()
+    serializer_class = WorkForceLevelSerializer
     http_method_names = ['get']

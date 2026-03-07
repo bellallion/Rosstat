@@ -15,7 +15,8 @@ from map.models import (
 from regions.models import (
     LaborForceRegion,
     RegionsRF,
-    PopulationRegion
+    PopulationRegion,
+    WorkForceLevel
     )
 
 #---Численность населения
@@ -96,4 +97,10 @@ class LaborForceRegionSerializer(serializers.ModelSerializer):
 class PopulationRegionSerializer(serializers.ModelSerializer):
     class Meta:
         model = PopulationRegion
+        fields = '__all__'
+
+#---Уровень участия в рабочей силе по регионам РФ
+class WorkForceLevelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WorkForceLevel
         fields = '__all__'
