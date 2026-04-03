@@ -17,9 +17,9 @@ const createLineChart_population =
     urbanPercentage,
     ruralPercentage
 )=>{
-    if (window.popylationChart) {
-        window.popylationChart.destroy();
-        window.popylationChart = null;
+    if (window.populationChart) {
+        window.populationChart.destroy();
+        window.populationChart = null;
     }
 
     data = {
@@ -36,11 +36,15 @@ const createLineChart_population =
 
     let config = {
         type:'line',
-        data: data
+        data: data,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false, 
+        }
     };
 
-    let popylationChart= new Chart(context_population, config);
-    window.popylationChart = popylationChart;
+    let populationChart= new Chart(context_population, config);
+    window.populationChart = populationChart;
 }
 
 
@@ -116,7 +120,11 @@ const createLineChart_emp_rus =
 
     let config = {
         type:'line',
-        data: data
+        data: data,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false, 
+        }
     };
 
     let employmentRusChart = new Chart(context_emp_rus, config);
@@ -165,69 +173,144 @@ axios.get('/api/rus/employrus')
 
 /*
 =================================== Значения занятости по годам для каждого вида деятельности | EmploymentByTypeOfWork ======================
-// */
+*/
 
-// // Получение котекста для рисования графиков
-// let canvas_by_type_of_work = document.getElementById('EmploymentRussia');
-// let context_by_type_of_work = canvas_by_type_of_work.getContext('2d');
+// Получение котекста для рисования графиков
+let canvas_by_type_of_work = document.getElementById('EmploymentByTypeOfWork');
+let context_by_type_of_work = canvas_by_type_of_work.getContext('2d');
 
-// //Функции
-
-// const createLineChart_by_type_of_work = 
-// (
-//     years, 
-//     month,
-//     yearWithMonth, 
-//     laborForce,
-//     employPeople,
-//     unemployedPeople,
-//     percentInLabor,
-//     percentEmployed,
-//     percentUnemployed
-// )=>{
-//     if (window.typeChart) {
-//         window.typeChart.destroy();
-//     }
-
-//     data = {
-//         labels: yearWithMonth,
-//         datasets: 
-//         [
-//             {data: laborForce, label: 'Рабочая сила'},
-//             {data: employPeople, label: 'Занятые'},
-//             {data: unemployedPeople, label: 'Безработные'},
-//             // {data: percentInLabor, label: 'ровень участия в составе рабочей силы, в %'},
-//             // {data: percentEmployed, label: 'Уровень занятости, в %'},
-//             // {data: percentUnemployed, label: 'Уровень безработицы, в %'}
-//         ]
-//     }
-
-//     let config = {
-//         type:'line',
-//         data: data
-//     };
-
-//     let chart = new Chart(context_by_type_of_work, config)
-// }
-
-
-// // Получение данных с сервера
-// axios.get('/api/rus/employtypeofwork')
-// .then((response)=>{
-//     let data = response.data;
-//     let years = [];
-//     let activityType = [];
-//     let value = [];
+// Функции
+const createLineChart_by_type_of_work = 
+(
+    year,
+    all_lines,
+    selectedActivities
+)=>{
+    if (window.byTypeOfWorkChart) {
+        window.byTypeOfWorkChart.destroy();
+        window.byTypeOfWorkChart = null;
+    }
     
-//     for(let i = 0; i < data.length; i++){
-//         years.push(data[i].year);
-//         activityType.push(data[i].activity_type);
-//         value.push(data[i].value);
-//     }
+    let filteredDatasets = all_lines.filter(dataset => 
+        selectedActivities.includes(dataset.label)
+    );
 
-//     createLineChart_emp_rus(
-//         years, 
-//         activityType,
-//         value
-//     );
-// });
+    data = {
+        labels: year,
+        datasets: filteredDatasets
+    }
+    let config = {
+        type: 'line',
+        data: data,
+        options: { 
+            plugins: {  
+                legend: {
+                    display: false
+                }
+            }
+        }
+    };
+
+    let byTypeOfWorkChart = new Chart(context_by_type_of_work, config);
+    window.byTypeOfWorkChart = byTypeOfWorkChart;
+}
+
+// Функция создания чекбоксов
+const createActivityCheckboxes = (activitiesData, years, all_lines) => {
+    let container = document.getElementById('activityCheckboxes');
+    
+    container.innerHTML = '';
+    
+    // массив активностей из ключей activitiesData
+    let activityList = Object.keys(activitiesData);
+
+    activityList.sort().forEach((activityName, index) => {
+        let label = document.createElement('label');
+        label.style.cssText = 'display: flex; align-items: center; cursor: pointer;';
+        
+        let checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.value = activityName;
+        
+        checkbox.addEventListener('change', () => {
+            let selectedActivities = Array.from(document.querySelectorAll('#activityCheckboxes input:checked'))
+                .map(cb => cb.value);
+
+            createLineChart_by_type_of_work(years, all_lines, selectedActivities);
+        });
+        
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(activityName));
+        container.appendChild(label);
+    });
+};
+
+
+// Получение данных с сервера
+Promise.all([
+    axios.get('/api/rus/activitytype'), 
+    axios.get('/api/rus/employtypeofwork')  
+])
+.then(([activityResponse, employmentResponse])=>{
+    let activityNames = {};
+    activityResponse.data.forEach(activity => {
+        activityNames[activity.id] = activity.name; 
+    });
+    
+    let data = employmentResponse.data;
+
+    let years = [...new Set(data.map(item => item.year))].sort((a, b) => a - b);;
+    let activitiesData = {};
+
+    data.forEach(item => {
+        let activityId = item.activity_type;
+        let activityName = activityNames[activityId]; 
+        let year = item.year;
+        let value = item.value;
+        
+        if (!activitiesData[activityName]) {
+            activitiesData[activityName] = {};
+        }
+        activitiesData[activityName][year] = value;
+    });
+
+    
+    let all_lines = [];
+    let colorIndex = 0;
+    let totalActivities = Object.keys(activitiesData).length;
+    
+    for (let activityName in activitiesData) {
+        let activityValues = [];
+
+        for (let i = 0; i < years.length; i++) {
+            let year = years[i];
+            activityValues.push(activitiesData[activityName][year] || null);
+        }
+
+        // цвет на основе индекса
+        let hue = (colorIndex * 360 / totalActivities) % 360;
+        let borderColor = `hsl(${hue}, 70%, 55%)`;
+        
+        all_lines.push({
+            label: activityName,
+            data: activityValues,
+            borderColor: borderColor,
+            backgroundColor: 'transparent',
+            tension: 0.1 
+        });
+        
+        colorIndex++;
+    }
+
+    createActivityCheckboxes(activitiesData, years, all_lines);
+
+    let selectedActivities = Object.keys(activitiesData).slice(0, 3);
+    createLineChart_by_type_of_work(
+        years, 
+        all_lines, 
+        selectedActivities
+    );
+})
+.catch(error => {
+    console.error('Ошибка при загрузке данных:', error);
+});

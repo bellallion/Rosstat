@@ -4,7 +4,9 @@
         На графике отображена динамика изменения численности населения по годам. 
         Позволяет отследить миграционные тенденции и естественный прирост/убыль населения.
     </div>
-    <canvas id="population"></canvas>
+    <div class="chart-wrapper">
+        <canvas id="population"></canvas>
+    </div>
 </div>
 
 <div class="show-charts">
@@ -13,7 +15,9 @@
         График показывает численность экономически активного населения, 
         включая занятых и ищущих работу. Важный индикатор трудового потенциала региона.
     </div>
-    <canvas id="EmploymentRussia"></canvas>
+    <div class="chart-wrapper">
+        <canvas id="EmploymentRussia"></canvas>
+    </div>
 </div>
 
 <div class="show-charts">
@@ -22,7 +26,10 @@
         Отображает процентное соотношение занятого населения к общей численности 
         трудоспособного возраста. Ключевой показатель эффективности рынка труда.
     </div>
-    <canvas id="EmploymentByTypeOfWork"></canvas>
+    <div class="chart-wrapper">
+        <div id="activityCheckboxes"></div>
+        <canvas id="EmploymentByTypeOfWork"></canvas>
+    </div>
 </div>
 
 <div id="show-two-type-charts">
@@ -42,7 +49,9 @@
                 Отражает процент трудоустройства выпускников вузов по специальности.
                 Важный показатель эффективности образовательных программ.
             </div>
-            <canvas id="WorkingGraduatesHE"></canvas>
+            <div class="chart-wrapper"> 
+                <canvas id="WorkingGraduatesHE"></canvas>
+            </div>
         </div>
     </div>
     <div id="second-type" style="display:none;">
@@ -52,7 +61,9 @@
                 Демонстрирует структуру занятости выпускников среднего профессионального образования.
                 Позволяет оценить востребованность рабочих специальностей.
             </div>
-            <canvas id="WorkInSpecialitySPO"></canvas>
+            <div class="chart-wrapper"> 
+                <canvas id="WorkInSpecialitySPO"></canvas>
+            </div>
         </div>
         <div class="show-charts">
             <p>Трудоустройство выпускников (СПО)</p>
@@ -60,7 +71,9 @@
                 Показывает уровень трудоустройства выпускников колледжей и техникумов.
                 Индикатор соответствия образования потребностям рынка труда.
             </div>
-            <canvas id="WorkingGraduatesSPO"></canvas>
+            <div class="chart-wrapper"> 
+                <canvas id="WorkingGraduatesSPO"></canvas>
+            </div>
         </div>
     </div>
 </div>

@@ -9,10 +9,10 @@
   --dark-gray: #424242;
   --button-hover: #1565c0;
 }
-#second-type{
+
+#second-type {
     display: none;
 }
-
 
 .show-charts {
     background-color: var(--white);
@@ -21,25 +21,97 @@
     display: flex;
     flex-direction: column;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* height: 700px;   */
 }
 
-.show-charts p {
-  font-size: 20px;
-  color: var(--title);
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  font-weight: 600;
+/* Изменение: используем ID вместо тега p */
+#p-EmploymentByTypeOfWork {
+    font-size: 20px;
+    color: var(--title);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    font-weight: 600;
+    flex-shrink: 0;  
 }
 
-.show-charts p::after {
-  color: var(--title);
+.chart-description {
+    font-size: 18px;
+    color: var(--dark-gray);
+    margin: 10px 0 15px 0; 
+    flex-shrink: 0; 
+    line-height: 1.4;
 }
 
+/* НОВЫЙ БЛОК: стили для chart-wrapper */
+.chart-wrapper {
+    flex: 1;  /* Занимает всё оставшееся место */
+    min-height: 0;  /* Важно для правильной работы flex */
+    display: flex;
+    flex-direction: column;
+}
+
+/* НОВЫЙ БЛОК: стили для контейнера чекбоксов */
+#activityCheckboxes {
+    flex-shrink: 0;  /* Не сжимается */
+    max-height: 180px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding: 12px;
+    background: var(--light-gray);
+    border: 1px solid var(--medium-gray);
+    border-radius: 6px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+}
+
+/* НОВЫЙ БЛОК: стили для label внутри чекбоксов */
+#activityCheckboxes label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 5px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+#activityCheckboxes label:hover {
+    background-color: rgba(30, 136, 229, 0.1);
+}
+
+#activityCheckboxes input {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+/* ИЗМЕНЕНИЕ: убираем height: 100% для canvas в chart-wrapper */
+.chart-wrapper canvas {
+    flex: 1;  /* Вместо height: 100% */
+    min-height: 0;
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* Остальные canvas (без обертки) оставляем как есть */
+#population,
+#EmploymentRussia,
+#WorkInSpecialityHE,
+#WorkingGraduatesHE,
+#WorkInSpecialitySPO,
+#WorkingGraduatesSPO {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
+/* Убираем дублирование #EmploymentByTypeOfWork из предыдущего правила */
+/* Он теперь обрабатывается через .chart-wrapper canvas */
 
 #show-two-type-charts {
-  display: flex;
-  flex-direction: column;
-  border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
 }
 
 #button-select-type {
@@ -58,12 +130,7 @@
 }
 
 #button-select-type:hover {
-  background-color: var(--button-hover);
-  transform: translateY(-2px);
+    background-color: var(--button-hover);
+    transform: translateY(-2px);
 }
 
-.chart-description{
-    font-size: 18px;
-    color: var(----dark-gray);
-    margin: 10px;
-}
