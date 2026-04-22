@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+<html lang="ru" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>map.migrations package &#8212; документация Статистика России 1.0</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=9ca2116e"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/translations.js?v=cd1d70c9"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="api package" href="api.html" />
+    <link rel="prev" title="map package" href="map.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="map-migrations-package">
+<h1>map.migrations package<a class="headerlink" href="#map-migrations-package" title="Ссылка на этот заголовок">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="module-map.migrations.0001_initial">
+<span id="map-migrations-0001-initial-module"></span><h2>map.migrations.0001_initial module<a class="headerlink" href="#module-map.migrations.0001_initial" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="map.migrations.0001_initial.Migration">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">map.migrations.0001_initial.</span></span><span class="sig-name descname"><span class="pre">Migration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/map/migrations/0001_initial.html#Migration"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#map.migrations.0001_initial.Migration" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">Migration</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0001_initial.Migration.dependencies">
+<span class="sig-name descname"><span class="pre">dependencies</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></span><a class="headerlink" href="#map.migrations.0001_initial.Migration.dependencies" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0001_initial.Migration.initial">
+<span class="sig-name descname"><span class="pre">initial</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#map.migrations.0001_initial.Migration.initial" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0001_initial.Migration.operations">
+<span class="sig-name descname"><span class="pre">operations</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;CreateModel</span>&#160; <span class="pre">name='PopulationData',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('year',</span> <span class="pre">&lt;django.db.models.fields.IntegerField&gt;),</span> <span class="pre">('total_population',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('urban_population',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('rural_population',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('urban_percentage',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('rural_percentage',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;)],</span> <span class="pre">options={'verbose_name':</span> <span class="pre">'Численность</span> <span class="pre">населения',</span> <span class="pre">'verbose_name_plural':</span> <span class="pre">'Численность</span> <span class="pre">населения'}&gt;]</span></span><a class="headerlink" href="#map.migrations.0001_initial.Migration.operations" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-map.migrations.0002_employmentrussia">
+<span id="map-migrations-0002-employmentrussia-module"></span><h2>map.migrations.0002_employmentrussia module<a class="headerlink" href="#module-map.migrations.0002_employmentrussia" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="map.migrations.0002_employmentrussia.Migration">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">map.migrations.0002_employmentrussia.</span></span><span class="sig-name descname"><span class="pre">Migration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/map/migrations/0002_employmentrussia.html#Migration"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#map.migrations.0002_employmentrussia.Migration" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">Migration</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0002_employmentrussia.Migration.dependencies">
+<span class="sig-name descname"><span class="pre">dependencies</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('map',</span> <span class="pre">'0001_initial')]</span></span><a class="headerlink" href="#map.migrations.0002_employmentrussia.Migration.dependencies" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0002_employmentrussia.Migration.operations">
+<span class="sig-name descname"><span class="pre">operations</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;CreateModel</span>&#160; <span class="pre">name='EmploymentRussia',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('year',</span> <span class="pre">&lt;django.db.models.fields.IntegerField&gt;),</span> <span class="pre">('month',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;),</span> <span class="pre">('labor_force',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('employ_people',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('unemployed_people',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('percent_in_labor',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('percent_employed',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('percent_unemployed',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;)],</span> <span class="pre">options={'verbose_name':</span> <span class="pre">'Данные</span> <span class="pre">о</span> <span class="pre">занятости</span> <span class="pre">населения',</span> <span class="pre">'verbose_name_plural':</span> <span class="pre">'Данные</span> <span class="pre">о</span> <span class="pre">занятости</span> <span class="pre">населения'}&gt;]</span></span><a class="headerlink" href="#map.migrations.0002_employmentrussia.Migration.operations" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-map.migrations.0003_economicactivitytype_employmentbytypeofwork">
+<span id="map-migrations-0003-economicactivitytype-employmentbytypeofwork-module"></span><h2>map.migrations.0003_economicactivitytype_employmentbytypeofwork module<a class="headerlink" href="#module-map.migrations.0003_economicactivitytype_employmentbytypeofwork" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="map.migrations.0003_economicactivitytype_employmentbytypeofwork.Migration">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">map.migrations.0003_economicactivitytype_employmentbytypeofwork.</span></span><span class="sig-name descname"><span class="pre">Migration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/map/migrations/0003_economicactivitytype_employmentbytypeofwork.html#Migration"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#map.migrations.0003_economicactivitytype_employmentbytypeofwork.Migration" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">Migration</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0003_economicactivitytype_employmentbytypeofwork.Migration.dependencies">
+<span class="sig-name descname"><span class="pre">dependencies</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('map',</span> <span class="pre">'0002_employmentrussia')]</span></span><a class="headerlink" href="#map.migrations.0003_economicactivitytype_employmentbytypeofwork.Migration.dependencies" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0003_economicactivitytype_employmentbytypeofwork.Migration.operations">
+<span class="sig-name descname"><span class="pre">operations</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;CreateModel</span>&#160; <span class="pre">name='EconomicActivityType',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('name',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;)],</span> <span class="pre">options={'verbose_name':</span> <span class="pre">'Вид</span> <span class="pre">экономической</span> <span class="pre">деятельности',</span> <span class="pre">'verbose_name_plural':</span> <span class="pre">'Виды</span> <span class="pre">экономической</span> <span class="pre">деятельности',</span> <span class="pre">'ordering':</span> <span class="pre">['name']}&gt;,</span> <span class="pre">&lt;CreateModel</span>&#160; <span class="pre">name='EmploymentByTypeOfWork',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('year',</span> <span class="pre">&lt;django.db.models.fields.PositiveSmallIntegerField&gt;),</span> <span class="pre">('value',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('activity_type',</span> <span class="pre">&lt;django.db.models.fields.related.ForeignKey&gt;)],</span> <span class="pre">options={'verbose_name':</span> <span class="pre">'Занятость</span> <span class="pre">по</span> <span class="pre">годам',</span> <span class="pre">'verbose_name_plural':</span> <span class="pre">'Занятость</span> <span class="pre">по</span> <span class="pre">годам',</span> <span class="pre">'ordering':</span> <span class="pre">['activity_type',</span> <span class="pre">'year'],</span> <span class="pre">'indexes':</span> <span class="pre">[&lt;Index:</span> <span class="pre">fields=['activity_type',</span> <span class="pre">'year']</span> <span class="pre">name='map_employm_activit_bafdf2_idx'&gt;],</span> <span class="pre">'unique_together':</span> <span class="pre">{('activity_type',</span> <span class="pre">'year')}}&gt;]</span></span><a class="headerlink" href="#map.migrations.0003_economicactivitytype_employmentbytypeofwork.Migration.operations" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-map.migrations.0004_jobsbytypeofwork">
+<span id="map-migrations-0004-jobsbytypeofwork-module"></span><h2>map.migrations.0004_jobsbytypeofwork module<a class="headerlink" href="#module-map.migrations.0004_jobsbytypeofwork" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="map.migrations.0004_jobsbytypeofwork.Migration">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">map.migrations.0004_jobsbytypeofwork.</span></span><span class="sig-name descname"><span class="pre">Migration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/map/migrations/0004_jobsbytypeofwork.html#Migration"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#map.migrations.0004_jobsbytypeofwork.Migration" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">Migration</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0004_jobsbytypeofwork.Migration.dependencies">
+<span class="sig-name descname"><span class="pre">dependencies</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('map',</span> <span class="pre">'0003_economicactivitytype_employmentbytypeofwork')]</span></span><a class="headerlink" href="#map.migrations.0004_jobsbytypeofwork.Migration.dependencies" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0004_jobsbytypeofwork.Migration.operations">
+<span class="sig-name descname"><span class="pre">operations</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;CreateModel</span>&#160; <span class="pre">name='JobsByTypeOfWork',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('year',</span> <span class="pre">&lt;django.db.models.fields.PositiveSmallIntegerField&gt;),</span> <span class="pre">('created',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('liquidated',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('activity_type',</span> <span class="pre">&lt;django.db.models.fields.related.ForeignKey&gt;)],</span> <span class="pre">options={'verbose_name':</span> <span class="pre">'Данные</span> <span class="pre">о</span> <span class="pre">рабочих</span> <span class="pre">местах</span> <span class="pre">по</span> <span class="pre">годам',</span> <span class="pre">'verbose_name_plural':</span> <span class="pre">'Данные</span> <span class="pre">о</span> <span class="pre">рабочих</span> <span class="pre">местах</span> <span class="pre">по</span> <span class="pre">годам',</span> <span class="pre">'ordering':</span> <span class="pre">['activity_type',</span> <span class="pre">'year'],</span> <span class="pre">'indexes':</span> <span class="pre">[&lt;Index:</span> <span class="pre">fields=['activity_type',</span> <span class="pre">'year']</span> <span class="pre">name='map_jobsbyt_activit_7e8612_idx'&gt;],</span> <span class="pre">'unique_together':</span> <span class="pre">{('activity_type',</span> <span class="pre">'year')}}&gt;]</span></span><a class="headerlink" href="#map.migrations.0004_jobsbytypeofwork.Migration.operations" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-map.migrations.0005_workinggraduateshe">
+<span id="map-migrations-0005-workinggraduateshe-module"></span><h2>map.migrations.0005_workinggraduateshe module<a class="headerlink" href="#module-map.migrations.0005_workinggraduateshe" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="map.migrations.0005_workinggraduateshe.Migration">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">map.migrations.0005_workinggraduateshe.</span></span><span class="sig-name descname"><span class="pre">Migration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/map/migrations/0005_workinggraduateshe.html#Migration"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#map.migrations.0005_workinggraduateshe.Migration" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">Migration</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0005_workinggraduateshe.Migration.dependencies">
+<span class="sig-name descname"><span class="pre">dependencies</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('map',</span> <span class="pre">'0004_jobsbytypeofwork')]</span></span><a class="headerlink" href="#map.migrations.0005_workinggraduateshe.Migration.dependencies" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0005_workinggraduateshe.Migration.operations">
+<span class="sig-name descname"><span class="pre">operations</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;CreateModel</span>&#160; <span class="pre">name='WorkingGraduatesHE',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('year',</span> <span class="pre">&lt;django.db.models.fields.PositiveSmallIntegerField&gt;),</span> <span class="pre">('all_people',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('working',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('not_working',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('can_not_work',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('employment_percent',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('activity_type',</span> <span class="pre">&lt;django.db.models.fields.related.ForeignKey&gt;)],</span> <span class="pre">options={'verbose_name':</span> <span class="pre">'Занятость</span> <span class="pre">выпускников.</span> <span class="pre">Высшее</span> <span class="pre">образование',</span> <span class="pre">'verbose_name_plural':</span> <span class="pre">'Занятость</span> <span class="pre">выпускников.</span> <span class="pre">Высшее</span> <span class="pre">образование',</span> <span class="pre">'ordering':</span> <span class="pre">['-year',</span> <span class="pre">'activity_type'],</span> <span class="pre">'unique_together':</span> <span class="pre">{('activity_type',</span> <span class="pre">'year')}}&gt;]</span></span><a class="headerlink" href="#map.migrations.0005_workinggraduateshe.Migration.operations" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-map.migrations.0006_alter_employmentrussia_employ_people_and_more">
+<span id="map-migrations-0006-alter-employmentrussia-employ-people-and-more-module"></span><h2>map.migrations.0006_alter_employmentrussia_employ_people_and_more module<a class="headerlink" href="#module-map.migrations.0006_alter_employmentrussia_employ_people_and_more" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="map.migrations.0006_alter_employmentrussia_employ_people_and_more.Migration">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">map.migrations.0006_alter_employmentrussia_employ_people_and_more.</span></span><span class="sig-name descname"><span class="pre">Migration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/map/migrations/0006_alter_employmentrussia_employ_people_and_more.html#Migration"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#map.migrations.0006_alter_employmentrussia_employ_people_and_more.Migration" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">Migration</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0006_alter_employmentrussia_employ_people_and_more.Migration.dependencies">
+<span class="sig-name descname"><span class="pre">dependencies</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('map',</span> <span class="pre">'0005_workinggraduateshe')]</span></span><a class="headerlink" href="#map.migrations.0006_alter_employmentrussia_employ_people_and_more.Migration.dependencies" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0006_alter_employmentrussia_employ_people_and_more.Migration.operations">
+<span class="sig-name descname"><span class="pre">operations</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;AlterField</span>&#160; <span class="pre">model_name='employmentrussia',</span> <span class="pre">name='employ_people',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;,</span> <span class="pre">&lt;AlterField</span>&#160; <span class="pre">model_name='employmentrussia',</span> <span class="pre">name='labor_force',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;,</span> <span class="pre">&lt;AlterField</span>&#160; <span class="pre">model_name='employmentrussia',</span> <span class="pre">name='percent_employed',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;,</span> <span class="pre">&lt;AlterField</span>&#160; <span class="pre">model_name='employmentrussia',</span> <span class="pre">name='percent_in_labor',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;,</span> <span class="pre">&lt;AlterField</span>&#160; <span class="pre">model_name='employmentrussia',</span> <span class="pre">name='percent_unemployed',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;,</span> <span class="pre">&lt;AlterField</span>&#160; <span class="pre">model_name='employmentrussia',</span> <span class="pre">name='unemployed_people',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;,</span> <span class="pre">&lt;AlterField</span>&#160; <span class="pre">model_name='jobsbytypeofwork',</span> <span class="pre">name='created',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;,</span> <span class="pre">&lt;AlterField</span>&#160; <span class="pre">model_name='jobsbytypeofwork',</span> <span class="pre">name='liquidated',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;,</span> <span class="pre">&lt;AlterField</span>&#160; <span class="pre">model_name='populationdata',</span> <span class="pre">name='rural_percentage',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;,</span> <span class="pre">&lt;AlterField</span>&#160; <span class="pre">model_name='populationdata',</span> <span class="pre">name='rural_population',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;,</span> <span class="pre">&lt;AlterField</span>&#160; <span class="pre">model_name='populationdata',</span> <span class="pre">name='urban_percentage',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;,</span> <span class="pre">&lt;AlterField</span>&#160; <span class="pre">model_name='populationdata',</span> <span class="pre">name='urban_population',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;,</span> <span class="pre">&lt;AlterField</span>&#160; <span class="pre">model_name='workinggraduateshe',</span> <span class="pre">name='all_people',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;,</span> <span class="pre">&lt;AlterField</span>&#160; <span class="pre">model_name='workinggraduateshe',</span> <span class="pre">name='can_not_work',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;,</span> <span class="pre">&lt;AlterField</span>&#160; <span class="pre">model_name='workinggraduateshe',</span> <span class="pre">name='employment_percent',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;,</span> <span class="pre">&lt;AlterField</span>&#160; <span class="pre">model_name='workinggraduateshe',</span> <span class="pre">name='not_working',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;,</span> <span class="pre">&lt;AlterField</span>&#160; <span class="pre">model_name='workinggraduateshe',</span> <span class="pre">name='working',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;]</span></span><a class="headerlink" href="#map.migrations.0006_alter_employmentrussia_employ_people_and_more.Migration.operations" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-map.migrations.0007_workinggraduatesspo">
+<span id="map-migrations-0007-workinggraduatesspo-module"></span><h2>map.migrations.0007_workinggraduatesspo module<a class="headerlink" href="#module-map.migrations.0007_workinggraduatesspo" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="map.migrations.0007_workinggraduatesspo.Migration">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">map.migrations.0007_workinggraduatesspo.</span></span><span class="sig-name descname"><span class="pre">Migration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/map/migrations/0007_workinggraduatesspo.html#Migration"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#map.migrations.0007_workinggraduatesspo.Migration" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">Migration</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0007_workinggraduatesspo.Migration.dependencies">
+<span class="sig-name descname"><span class="pre">dependencies</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('map',</span> <span class="pre">'0006_alter_employmentrussia_employ_people_and_more')]</span></span><a class="headerlink" href="#map.migrations.0007_workinggraduatesspo.Migration.dependencies" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0007_workinggraduatesspo.Migration.operations">
+<span class="sig-name descname"><span class="pre">operations</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;CreateModel</span>&#160; <span class="pre">name='WorkingGraduatesSPO',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('year',</span> <span class="pre">&lt;django.db.models.fields.PositiveSmallIntegerField&gt;),</span> <span class="pre">('all_people',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('working',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('not_working',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('can_not_work',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('employment_percent',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('activity_type',</span> <span class="pre">&lt;django.db.models.fields.related.ForeignKey&gt;)],</span> <span class="pre">options={'verbose_name':</span> <span class="pre">'Занятость</span> <span class="pre">выпускников.</span> <span class="pre">Среднее</span> <span class="pre">профессиональное</span> <span class="pre">образование',</span> <span class="pre">'verbose_name_plural':</span> <span class="pre">'Занятость</span> <span class="pre">выпускников.</span> <span class="pre">Среднее</span> <span class="pre">профессиональное</span> <span class="pre">образование',</span> <span class="pre">'ordering':</span> <span class="pre">['-year',</span> <span class="pre">'activity_type'],</span> <span class="pre">'unique_together':</span> <span class="pre">{('activity_type',</span> <span class="pre">'year')}}&gt;]</span></span><a class="headerlink" href="#map.migrations.0007_workinggraduatesspo.Migration.operations" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-map.migrations.0008_specialtytype_workinspecialityhe">
+<span id="map-migrations-0008-specialtytype-workinspecialityhe-module"></span><h2>map.migrations.0008_specialtytype_workinspecialityhe module<a class="headerlink" href="#module-map.migrations.0008_specialtytype_workinspecialityhe" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="map.migrations.0008_specialtytype_workinspecialityhe.Migration">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">map.migrations.0008_specialtytype_workinspecialityhe.</span></span><span class="sig-name descname"><span class="pre">Migration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/map/migrations/0008_specialtytype_workinspecialityhe.html#Migration"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#map.migrations.0008_specialtytype_workinspecialityhe.Migration" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">Migration</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0008_specialtytype_workinspecialityhe.Migration.dependencies">
+<span class="sig-name descname"><span class="pre">dependencies</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('map',</span> <span class="pre">'0007_workinggraduatesspo')]</span></span><a class="headerlink" href="#map.migrations.0008_specialtytype_workinspecialityhe.Migration.dependencies" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0008_specialtytype_workinspecialityhe.Migration.operations">
+<span class="sig-name descname"><span class="pre">operations</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;CreateModel</span>&#160; <span class="pre">name='SpecialtyType',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('name',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;)],</span> <span class="pre">options={'verbose_name':</span> <span class="pre">'Специальность',</span> <span class="pre">'verbose_name_plural':</span> <span class="pre">'Специальности',</span> <span class="pre">'ordering':</span> <span class="pre">['name']}&gt;,</span> <span class="pre">&lt;CreateModel</span>&#160; <span class="pre">name='WorkInSpecialityHE',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('year',</span> <span class="pre">&lt;django.db.models.fields.PositiveSmallIntegerField&gt;),</span> <span class="pre">('all_people',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('works_by_profession',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('works_not_by_profession',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('works_by_profession_percent',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('works_not_by_profession_percent',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('special_type',</span> <span class="pre">&lt;django.db.models.fields.related.ForeignKey&gt;)],</span> <span class="pre">options={'verbose_name':</span> <span class="pre">'Данные</span> <span class="pre">о</span> <span class="pre">выпускниках,</span> <span class="pre">работающих</span> <span class="pre">по</span> <span class="pre">специальности</span> <span class="pre">за</span> <span class="pre">2024</span> <span class="pre">год.</span> <span class="pre">Высшее</span> <span class="pre">образование',</span> <span class="pre">'verbose_name_plural':</span> <span class="pre">'Данные</span> <span class="pre">о</span> <span class="pre">выпускниках,</span> <span class="pre">работающих</span> <span class="pre">по</span> <span class="pre">специальности</span> <span class="pre">за</span> <span class="pre">2024</span> <span class="pre">год.</span> <span class="pre">Высшее</span> <span class="pre">образование',</span> <span class="pre">'ordering':</span> <span class="pre">['-year',</span> <span class="pre">'special_type'],</span> <span class="pre">'unique_together':</span> <span class="pre">{('special_type',</span> <span class="pre">'year')}}&gt;]</span></span><a class="headerlink" href="#map.migrations.0008_specialtytype_workinspecialityhe.Migration.operations" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-map.migrations.0009_alter_workinspecialityhe_options">
+<span id="map-migrations-0009-alter-workinspecialityhe-options-module"></span><h2>map.migrations.0009_alter_workinspecialityhe_options module<a class="headerlink" href="#module-map.migrations.0009_alter_workinspecialityhe_options" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="map.migrations.0009_alter_workinspecialityhe_options.Migration">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">map.migrations.0009_alter_workinspecialityhe_options.</span></span><span class="sig-name descname"><span class="pre">Migration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/map/migrations/0009_alter_workinspecialityhe_options.html#Migration"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#map.migrations.0009_alter_workinspecialityhe_options.Migration" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">Migration</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0009_alter_workinspecialityhe_options.Migration.dependencies">
+<span class="sig-name descname"><span class="pre">dependencies</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('map',</span> <span class="pre">'0008_specialtytype_workinspecialityhe')]</span></span><a class="headerlink" href="#map.migrations.0009_alter_workinspecialityhe_options.Migration.dependencies" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0009_alter_workinspecialityhe_options.Migration.operations">
+<span class="sig-name descname"><span class="pre">operations</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;AlterModelOptions</span>&#160; <span class="pre">name='workinspecialityhe',</span> <span class="pre">options={'ordering':</span> <span class="pre">['-year',</span> <span class="pre">'special_type'],</span> <span class="pre">'verbose_name':</span> <span class="pre">'Данные</span> <span class="pre">о</span> <span class="pre">выпускниках,</span> <span class="pre">работающих</span> <span class="pre">по</span> <span class="pre">специальности.</span> <span class="pre">Высшее</span> <span class="pre">образование',</span> <span class="pre">'verbose_name_plural':</span> <span class="pre">'Данные</span> <span class="pre">о</span> <span class="pre">выпускниках,</span> <span class="pre">работающих</span> <span class="pre">по</span> <span class="pre">специальности.</span> <span class="pre">Высшее</span> <span class="pre">образование'}&gt;]</span></span><a class="headerlink" href="#map.migrations.0009_alter_workinspecialityhe_options.Migration.operations" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-map.migrations.0010_workinspecialityspo">
+<span id="map-migrations-0010-workinspecialityspo-module"></span><h2>map.migrations.0010_workinspecialityspo module<a class="headerlink" href="#module-map.migrations.0010_workinspecialityspo" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="map.migrations.0010_workinspecialityspo.Migration">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">map.migrations.0010_workinspecialityspo.</span></span><span class="sig-name descname"><span class="pre">Migration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/map/migrations/0010_workinspecialityspo.html#Migration"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#map.migrations.0010_workinspecialityspo.Migration" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">Migration</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0010_workinspecialityspo.Migration.dependencies">
+<span class="sig-name descname"><span class="pre">dependencies</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('map',</span> <span class="pre">'0009_alter_workinspecialityhe_options')]</span></span><a class="headerlink" href="#map.migrations.0010_workinspecialityspo.Migration.dependencies" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0010_workinspecialityspo.Migration.operations">
+<span class="sig-name descname"><span class="pre">operations</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;CreateModel</span>&#160; <span class="pre">name='WorkInSpecialitySPO',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('year',</span> <span class="pre">&lt;django.db.models.fields.PositiveSmallIntegerField&gt;),</span> <span class="pre">('all_people',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('works_by_profession',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('works_not_by_profession',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('works_by_profession_percent',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('works_not_by_profession_percent',</span> <span class="pre">&lt;django.db.models.fields.FloatField&gt;),</span> <span class="pre">('special_type',</span> <span class="pre">&lt;django.db.models.fields.related.ForeignKey&gt;)],</span> <span class="pre">options={'verbose_name':</span> <span class="pre">'Данные</span> <span class="pre">о</span> <span class="pre">выпускниках,</span> <span class="pre">работающих</span> <span class="pre">по</span> <span class="pre">специальности.</span> <span class="pre">Средние</span> <span class="pre">профессиональное</span> <span class="pre">образование',</span> <span class="pre">'verbose_name_plural':</span> <span class="pre">'Данные</span> <span class="pre">о</span> <span class="pre">выпускниках,</span> <span class="pre">работающих</span> <span class="pre">по</span> <span class="pre">специальности.</span> <span class="pre">Средние</span> <span class="pre">профессиональное</span> <span class="pre">образование',</span> <span class="pre">'ordering':</span> <span class="pre">['-year',</span> <span class="pre">'special_type'],</span> <span class="pre">'unique_together':</span> <span class="pre">{('special_type',</span> <span class="pre">'year')}}&gt;]</span></span><a class="headerlink" href="#map.migrations.0010_workinspecialityspo.Migration.operations" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-map.migrations.0011_alter_workinggraduatesspo_all_people_and_more">
+<span id="map-migrations-0011-alter-workinggraduatesspo-all-people-and-more-module"></span><h2>map.migrations.0011_alter_workinggraduatesspo_all_people_and_more module<a class="headerlink" href="#module-map.migrations.0011_alter_workinggraduatesspo_all_people_and_more" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="map.migrations.0011_alter_workinggraduatesspo_all_people_and_more.Migration">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">map.migrations.0011_alter_workinggraduatesspo_all_people_and_more.</span></span><span class="sig-name descname"><span class="pre">Migration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/map/migrations/0011_alter_workinggraduatesspo_all_people_and_more.html#Migration"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#map.migrations.0011_alter_workinggraduatesspo_all_people_and_more.Migration" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">Migration</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0011_alter_workinggraduatesspo_all_people_and_more.Migration.dependencies">
+<span class="sig-name descname"><span class="pre">dependencies</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('map',</span> <span class="pre">'0010_workinspecialityspo')]</span></span><a class="headerlink" href="#map.migrations.0011_alter_workinggraduatesspo_all_people_and_more.Migration.dependencies" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="map.migrations.0011_alter_workinggraduatesspo_all_people_and_more.Migration.operations">
+<span class="sig-name descname"><span class="pre">operations</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;AlterField</span>&#160; <span class="pre">model_name='workinggraduatesspo',</span> <span class="pre">name='all_people',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;,</span> <span class="pre">&lt;AlterField</span>&#160; <span class="pre">model_name='workinggraduatesspo',</span> <span class="pre">name='can_not_work',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;,</span> <span class="pre">&lt;AlterField</span>&#160; <span class="pre">model_name='workinggraduatesspo',</span> <span class="pre">name='not_working',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;,</span> <span class="pre">&lt;AlterField</span>&#160; <span class="pre">model_name='workinggraduatesspo',</span> <span class="pre">name='working',</span> <span class="pre">field=&lt;django.db.models.fields.FloatField&gt;&gt;]</span></span><a class="headerlink" href="#map.migrations.0011_alter_workinggraduatesspo_all_people_and_more.Migration.operations" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-map.migrations">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-map.migrations" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Статистика России</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Навигация</h3>
+<p class="caption" role="heading"><span class="caption-text">Содержание:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">map</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="map.html">map package</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Модули приложения:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="map.html">map package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="map.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">map.migrations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-map.migrations.0001_initial">map.migrations.0001_initial module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#map.migrations.0001_initial.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0001_initial.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0001_initial.Migration.initial"><code class="docutils literal notranslate"><span class="pre">Migration.initial</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0001_initial.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-map.migrations.0002_employmentrussia">map.migrations.0002_employmentrussia module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#map.migrations.0002_employmentrussia.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0002_employmentrussia.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0002_employmentrussia.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-map.migrations.0003_economicactivitytype_employmentbytypeofwork">map.migrations.0003_economicactivitytype_employmentbytypeofwork module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#map.migrations.0003_economicactivitytype_employmentbytypeofwork.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0003_economicactivitytype_employmentbytypeofwork.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0003_economicactivitytype_employmentbytypeofwork.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-map.migrations.0004_jobsbytypeofwork">map.migrations.0004_jobsbytypeofwork module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#map.migrations.0004_jobsbytypeofwork.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0004_jobsbytypeofwork.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0004_jobsbytypeofwork.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-map.migrations.0005_workinggraduateshe">map.migrations.0005_workinggraduateshe module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#map.migrations.0005_workinggraduateshe.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0005_workinggraduateshe.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0005_workinggraduateshe.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-map.migrations.0006_alter_employmentrussia_employ_people_and_more">map.migrations.0006_alter_employmentrussia_employ_people_and_more module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#map.migrations.0006_alter_employmentrussia_employ_people_and_more.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0006_alter_employmentrussia_employ_people_and_more.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0006_alter_employmentrussia_employ_people_and_more.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-map.migrations.0007_workinggraduatesspo">map.migrations.0007_workinggraduatesspo module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#map.migrations.0007_workinggraduatesspo.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0007_workinggraduatesspo.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0007_workinggraduatesspo.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-map.migrations.0008_specialtytype_workinspecialityhe">map.migrations.0008_specialtytype_workinspecialityhe module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#map.migrations.0008_specialtytype_workinspecialityhe.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0008_specialtytype_workinspecialityhe.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0008_specialtytype_workinspecialityhe.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-map.migrations.0009_alter_workinspecialityhe_options">map.migrations.0009_alter_workinspecialityhe_options module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#map.migrations.0009_alter_workinspecialityhe_options.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0009_alter_workinspecialityhe_options.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0009_alter_workinspecialityhe_options.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-map.migrations.0010_workinspecialityspo">map.migrations.0010_workinspecialityspo module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#map.migrations.0010_workinspecialityspo.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0010_workinspecialityspo.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0010_workinspecialityspo.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-map.migrations.0011_alter_workinggraduatesspo_all_people_and_more">map.migrations.0011_alter_workinggraduatesspo_all_people_and_more module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#map.migrations.0011_alter_workinggraduatesspo_all_people_and_more.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0011_alter_workinggraduatesspo_all_people_and_more.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#map.migrations.0011_alter_workinggraduatesspo_all_people_and_more.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-map.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="map.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map.html#module-map.admin">map.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map.html#module-map.apps">map.apps module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map.html#module-map.models">map.models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map.html#module-map.tests">map.tests module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map.html#module-map.urls">map.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map.html#module-map.views">map.views module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map.html#module-map">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">api package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regions.html">regions package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">main package</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">map</a><ul>
+  <li><a href="map.html">map package</a><ul>
+      <li>Previous: <a href="map.html" title="предыдущая глава">map package</a></li>
+      <li>Next: <a href="api.html" title="следующая глава">api package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Кононова А.А., Кузнецова М.С..
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/map.migrations.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

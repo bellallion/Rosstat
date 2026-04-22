@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html lang="ru" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>api.views &#8212; документация Статистика России 1.0</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=9ca2116e"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=cd1d70c9"></script>
+    <link rel="index" title="Алфавитный указатель" href="../../genindex.html" />
+    <link rel="search" title="Поиск" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Исходный код api.views</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">django.shortcuts</span><span class="w"> </span><span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">viewsets</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">map.models</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">PopulationData</span><span class="p">,</span> 
+    <span class="n">EmploymentRussia</span><span class="p">,</span>
+    <span class="n">EconomicActivityType</span><span class="p">,</span>
+    <span class="n">EmploymentByTypeOfWork</span><span class="p">,</span>
+    <span class="n">JobsByTypeOfWork</span><span class="p">,</span>
+    <span class="n">WorkingGraduatesHE</span><span class="p">,</span>
+    <span class="n">WorkingGraduatesSPO</span><span class="p">,</span>
+    <span class="n">SpecialtyType</span><span class="p">,</span>
+    <span class="n">WorkInSpecialityHE</span><span class="p">,</span>
+    <span class="n">WorkInSpecialitySPO</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.serializer</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">PopulationDataSerializer</span><span class="p">,</span> 
+    <span class="n">EmploymentRussiaSerializer</span><span class="p">,</span>
+    <span class="n">EconomicActivityTypeSerializer</span><span class="p">,</span>
+    <span class="n">EmploymentByTypeOfWorkSerializer</span><span class="p">,</span>
+    <span class="n">JobsByTypeOfWorkSerializer</span><span class="p">,</span>
+    <span class="n">WorkingGraduatesHESerializer</span><span class="p">,</span>
+    <span class="n">WorkingGraduatesSPOSerializer</span><span class="p">,</span>
+    <span class="n">SpecialtyTypeSerializer</span><span class="p">,</span>
+    <span class="n">WorkInSpecialityHESerializer</span><span class="p">,</span>
+    <span class="n">WorkInSpecialitySPOSerializer</span>
+    <span class="p">)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">regions.models</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">RegionsRF</span><span class="p">,</span>
+    <span class="n">LaborForceRegion</span><span class="p">,</span>
+    <span class="n">PopulationRegion</span><span class="p">,</span>
+    <span class="n">WorkForceLevel</span><span class="p">,</span>
+    <span class="n">WorkForceHE</span>
+    <span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.serializer</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">RegionsRFSerializer</span><span class="p">,</span>
+    <span class="n">LaborForceRegionSerializer</span><span class="p">,</span>
+    <span class="n">PopulationRegionSerializer</span><span class="p">,</span>
+    <span class="n">WorkForceLevelSerializer</span><span class="p">,</span>
+    <span class="n">WorkForceHESerializer</span>
+    <span class="p">)</span>
+
+<span class="c1"># контроллеры</span>
+
+<span class="c1">#---------------------map-------------------------------------</span>
+
+<span class="c1">#---Численность населения</span>
+
+<div class="viewcode-block" id="PopulationDataApiView">
+<a class="viewcode-back" href="../../api.html#api.views.PopulationDataApiView">[документация]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PopulationDataApiView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">PopulationData</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">PopulationDataSerializer</span>
+    <span class="n">http_method_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">]</span></div>
+
+
+<span class="c1">#---занятость и безработица в России по месяцам</span>
+
+<div class="viewcode-block" id="EmploymentRussiaApiView">
+<a class="viewcode-back" href="../../api.html#api.views.EmploymentRussiaApiView">[документация]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">EmploymentRussiaApiView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">EmploymentRussia</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">EmploymentRussiaSerializer</span>
+    <span class="n">http_method_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">]</span></div>
+
+
+<span class="c1">#---Справочник видов экономической деятельности</span>
+
+<div class="viewcode-block" id="EconomicActivityTypeApiView">
+<a class="viewcode-back" href="../../api.html#api.views.EconomicActivityTypeApiView">[документация]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">EconomicActivityTypeApiView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">EconomicActivityType</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">EconomicActivityTypeSerializer</span>
+    <span class="n">http_method_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">]</span></div>
+
+
+<span class="c1">#---Значения занятости по годам для каждого вида деятельности</span>
+
+<div class="viewcode-block" id="EmploymentByTypeOfWorkApiView">
+<a class="viewcode-back" href="../../api.html#api.views.EmploymentByTypeOfWorkApiView">[документация]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">EmploymentByTypeOfWorkApiView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">EmploymentByTypeOfWork</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">EmploymentByTypeOfWorkSerializer</span>
+    <span class="n">http_method_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">]</span></div>
+
+
+<span class="c1">#---Данные о рабочих местах по годам</span>
+
+<div class="viewcode-block" id="JobsByTypeOfWorkApiView">
+<a class="viewcode-back" href="../../api.html#api.views.JobsByTypeOfWorkApiView">[документация]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">JobsByTypeOfWorkApiView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">JobsByTypeOfWork</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">JobsByTypeOfWorkSerializer</span>
+    <span class="n">http_method_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">]</span></div>
+
+
+<span class="c1">#---Занятость выпускников вузов. Высшее образование</span>
+
+<div class="viewcode-block" id="WorkingGraduatesHEApiView">
+<a class="viewcode-back" href="../../api.html#api.views.WorkingGraduatesHEApiView">[документация]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">WorkingGraduatesHEApiView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">WorkingGraduatesHE</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">WorkingGraduatesHESerializer</span>
+    <span class="n">http_method_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">]</span></div>
+
+
+<span class="c1">#---Занятость выпускников вузов. Среднее профессиональное образование</span>
+
+<div class="viewcode-block" id="WorkingGraduatesSPOApiView">
+<a class="viewcode-back" href="../../api.html#api.views.WorkingGraduatesSPOApiView">[документация]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">WorkingGraduatesSPOApiView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">WorkingGraduatesSPO</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">WorkingGraduatesSPOSerializer</span>
+    <span class="n">http_method_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">]</span></div>
+
+
+<span class="c1">#---Справочник специальностей</span>
+
+<div class="viewcode-block" id="SpecialtyTypeApiView">
+<a class="viewcode-back" href="../../api.html#api.views.SpecialtyTypeApiView">[документация]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpecialtyTypeApiView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">SpecialtyType</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">SpecialtyTypeSerializer</span>
+    <span class="n">http_method_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">]</span></div>
+
+
+<span class="c1">#---Трудоустройство выпускников по специальностям. Высшее образование</span>
+
+<div class="viewcode-block" id="WorkInSpecialityHEApiView">
+<a class="viewcode-back" href="../../api.html#api.views.WorkInSpecialityHEApiView">[документация]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">WorkInSpecialityHEApiView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">WorkInSpecialityHE</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">WorkInSpecialityHESerializer</span>
+    <span class="n">http_method_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">]</span></div>
+
+
+<span class="c1">#---Трудоустройство выпускников по специальностям. Средние профессиональное образование</span>
+
+<div class="viewcode-block" id="WorkInSpecialitySPOApiView">
+<a class="viewcode-back" href="../../api.html#api.views.WorkInSpecialitySPOApiView">[документация]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">WorkInSpecialitySPOApiView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">WorkInSpecialitySPO</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">WorkInSpecialitySPOSerializer</span>
+    <span class="n">http_method_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">]</span></div>
+
+
+
+<span class="c1">#---------------------regions-------------------------------------</span>
+
+<span class="c1">#---Справочник регионов РФ</span>
+
+<div class="viewcode-block" id="RegionsRFApiView">
+<a class="viewcode-back" href="../../api.html#api.views.RegionsRFApiView">[документация]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">RegionsRFApiView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">RegionsRF</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">RegionsRFSerializer</span>
+    <span class="n">http_method_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">]</span></div>
+
+
+<span class="c1">#---Численность рабочей силы по регионам РФ</span>
+
+<div class="viewcode-block" id="LaborForceRegionApiView">
+<a class="viewcode-back" href="../../api.html#api.views.LaborForceRegionApiView">[документация]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">LaborForceRegionApiView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">LaborForceRegion</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">LaborForceRegionSerializer</span>
+    <span class="n">http_method_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">]</span></div>
+
+
+<span class="c1">#---Численность населения по регионам РФ</span>
+
+<div class="viewcode-block" id="PopulationRegionApiView">
+<a class="viewcode-back" href="../../api.html#api.views.PopulationRegionApiView">[документация]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PopulationRegionApiView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">PopulationRegion</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">PopulationRegionSerializer</span>
+    <span class="n">http_method_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">]</span></div>
+
+
+<span class="c1">#---Уровень участия в рабочей силе по регионам РФ</span>
+
+<div class="viewcode-block" id="WorkForceLevelApiView">
+<a class="viewcode-back" href="../../api.html#api.views.WorkForceLevelApiView">[документация]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">WorkForceLevelApiView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">WorkForceLevel</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">WorkForceLevelSerializer</span>
+    <span class="n">http_method_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">]</span></div>
+
+
+<span class="c1">#---Доля работников с высшим образованием по регионам РФ</span>
+
+<div class="viewcode-block" id="WorkForceHEApiView">
+<a class="viewcode-back" href="../../api.html#api.views.WorkForceHEApiView">[документация]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">WorkForceHEApiView</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">WorkForceHE</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">WorkForceHESerializer</span>
+    <span class="n">http_method_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">]</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Статистика России</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Навигация</h3>
+<p class="caption" role="heading"><span class="caption-text">Содержание:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">map</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Модули приложения:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../map.html">map package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">api package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../regions.html">regions package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main.html">main package</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Код модуля</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Кононова А.А., Кузнецова М.С..
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
