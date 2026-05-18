@@ -105,8 +105,6 @@
     display: block;
 }
 
-/* Убираем дублирование #EmploymentByTypeOfWork из предыдущего правила */
-/* Он теперь обрабатывается через .chart-wrapper canvas */
 
 #show-two-type-charts {
     display: flex;

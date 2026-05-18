@@ -454,7 +454,7 @@ Promise.all([
                 createdData[activityName] = {};
             }
             createdData[activityName][year] = created;
-            
+
             if (!liquidatedData[activityName]) {
                 liquidatedData[activityName] = {};
             }
@@ -481,7 +481,7 @@ Promise.all([
                 borderColor: borderColor,
                 backgroundColor: 'transparent',
                 borderWidth: 2,
-                borderDash: [],   
+                borderDash: [],
                 tension: 0.1,
                 fill: false
             });
@@ -513,6 +513,227 @@ Promise.all([
         console.error('Ошибка при загрузке данных JobsByTypeOfWork:', error);
     });
 
+/*
+=================================== Модель данных о занятости выпускников вузов. Высшее образование | WorkingGraduatesHE ======================
+*/
+
+// Получение котекста для рисования графиков
+let canvas_work_grad_he = document.getElementById('WorkingGraduatesHE');
+let context_work_grad_he = canvas_work_grad_he.getContext('2d');
+
+let allDatasetsWorkGradsHE = [];
+let yearsWorkGradsHE = [];
+let chartWorkGradsHE = null;
+
+
+const updateLineChartWorkGradsHE = () => {
+    let selectedActivities = Array.from(document.querySelectorAll('#activityCheckboxesWorkingGraduatesHE input:checked'))
+        .map(cb => cb.value);
+
+    let filteredDatasets = allDatasetsWorkGradsHE.filter(dataset => {
+        let baseName = dataset.label
+            .replace(' (Занятые)', '')
+            .replace(' (безработные)', '')
+            .replace(' (вне раб. силы)', '');
+        return selectedActivities.includes(baseName);
+    });
+
+    let datasetsToShow = filteredDatasets.length > 0 ? filteredDatasets : [];
+
+    if (chartWorkGradsHE) {
+        chartWorkGradsHE.destroy();
+        chartWorkGradsHE = null;
+    }
+
+    let chartType = yearsWorkGradsHE.length === 1 ? 'bar' : 'line';
+    
+    let datasetsForChart = datasetsToShow;
+    if (chartType === 'bar') {
+        datasetsForChart = datasetsToShow.map(dataset => {
+            // Правильное преобразование hsl в hsla с альфа-каналом
+            let backgroundColor = 'rgba(0,0,0,0.3)'; // значение по умолчанию
+            if (dataset.borderColor) {
+                // Заменяем hsl( ... ) на hsla( ... , 0.3)
+                backgroundColor = dataset.borderColor.replace('hsl', 'hsla').replace(')', ', 0.3)');
+            }
+            
+            return {
+                ...dataset,
+                tension: undefined,
+                backgroundColor: backgroundColor,
+                borderWidth: 1
+            };
+        });
+    }
+
+    if (context_work_grad_he && yearsWorkGradsHE.length > 0) {
+        let config = {
+            type: chartType,
+            data: {
+                labels: yearsWorkGradsHE,
+                datasets: datasetsForChart
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { size: 10 },
+                            boxWidth: 12,
+                            boxHeight: 12,
+                            usePointStyle: chartType === 'line'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                let label = context.dataset.label || '';
+                                let value = context.parsed.y;
+                                return `${label}: ${value?.toFixed(1) ?? 'Нет данных'} чел.`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Занятость выпускников (тыс. чел)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Год'
+                        }
+                    }
+                }
+            }
+        };
+        
+        chartWorkGradsHE = new Chart(context_work_grad_he, config);
+    }
+};
+
+
+// Получение данных с сервера
+Promise.all([
+    axios.get('/api/rus/activitytype'),
+    axios.get('/api/rus/he/workgrad')
+])
+    .then(([activityResponse, workgradHeResponse]) => {
+
+        let activityNames = {};
+        activityResponse.data.forEach(activity => {
+            activityNames[activity.id] = activity.name;
+        });
+
+        let data = workgradHeResponse.data;
+
+        yearsWorkGradsHE = [...new Set(data.map(item => item.year))].sort((a, b) => a - b);
+
+        let workingData = {}; // занятые
+        let not_workingData = {}; // безработные
+        let can_not_workData = {}; // Не входящие в рабочую силу
+
+        data.forEach(item => {
+            let activityId = item.activity_type;
+            let activityName = activityNames[activityId];
+            let year = item.year;
+            let working = item.working;
+            let not_working = item.not_working;
+            let can_not_work = item.can_not_work;
+
+            if (!activityName) return;
+
+            if (!workingData[activityName]) {
+                workingData[activityName] = {};
+            }
+            workingData[activityName][year] = working;
+
+            if (!not_workingData[activityName]) {
+                not_workingData[activityName] = {};
+            }
+            not_workingData[activityName][year] = not_working;
+
+            if (!can_not_workData[activityName]) {
+                can_not_workData[activityName] = {};
+            }
+            can_not_workData[activityName][year] = can_not_work;
+        });
+
+        allDatasetsWorkGradsHE = [];
+        let colorIndex = 0;
+        let totalActivities = Object.keys(workingData).length;
+
+        for (let activityName in workingData) {
+            let hue = (colorIndex * 360 / totalActivities) % 360;
+            let borderColor = `hsl(${hue}, 70%, 55%)`;
+
+            let workingValues = [];
+            for (let i = 0; i < yearsWorkGradsHE.length; i++) {
+                let year = yearsWorkGradsHE[i];
+                workingValues.push(workingData[activityName]?.[year] ?? null);
+            }
+
+            allDatasetsWorkGradsHE.push({
+                label: `${activityName} (Занятые)`,
+                data: workingValues,
+                borderColor: borderColor,
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                borderDash: [],
+                tension: 0.1,
+                fill: false
+            });
+
+            let not_workingValues = [];
+            for (let i = 0; i < yearsWorkGradsHE.length; i++) {
+                let year = yearsWorkGradsHE[i];
+                not_workingValues.push(not_workingData[activityName]?.[year] ?? null);
+            }
+
+            allDatasetsWorkGradsHE.push({
+                label: `${activityName} (безработные)`,
+                data: not_workingValues,
+                borderColor: borderColor,
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                borderDash: [5, 5],  // пунктирная линия
+                tension: 0.1,
+                fill: false
+            });
+
+            let can_not_workValues = [];
+            for (let i = 0; i < yearsWorkGradsHE.length; i++) {
+                let year = yearsWorkGradsHE[i];
+                can_not_workValues.push(can_not_workData[activityName]?.[year] ?? null);
+            }
+
+            allDatasetsWorkGradsHE.push({
+                label: `${activityName} (вне раб. силы)`,
+                data: can_not_workValues,
+                borderColor: borderColor,
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                borderDash: [2, 2],  // пунктирная линия
+                tension: 0.1,
+                fill: false
+            });
+
+
+            colorIndex++;
+        }
+
+        createActivityCheckboxes(workingData, 'activityCheckboxesWorkingGraduatesHE', updateLineChartWorkGradsHE);
+        updateLineChartWorkGradsHE();
+    })
+    .catch(error => {
+        console.error('Ошибка при загрузке данных WorkingGraduatesHE:', error);
+    });
 
 
 
