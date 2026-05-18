@@ -546,17 +546,15 @@ const updateLineChartWorkGradsHE = () => {
     }
 
     let chartType = yearsWorkGradsHE.length === 1 ? 'bar' : 'line';
-    
+
     let datasetsForChart = datasetsToShow;
     if (chartType === 'bar') {
         datasetsForChart = datasetsToShow.map(dataset => {
-            // Правильное преобразование hsl в hsla с альфа-каналом
-            let backgroundColor = 'rgba(0,0,0,0.3)'; // значение по умолчанию
+            let backgroundColor = 'rgba(0,0,0,0.3)';
             if (dataset.borderColor) {
-                // Заменяем hsl( ... ) на hsla( ... , 0.3)
                 backgroundColor = dataset.borderColor.replace('hsl', 'hsla').replace(')', ', 0.3)');
             }
-            
+
             return {
                 ...dataset,
                 tension: undefined,
@@ -613,7 +611,7 @@ const updateLineChartWorkGradsHE = () => {
                 }
             }
         };
-        
+
         chartWorkGradsHE = new Chart(context_work_grad_he, config);
     }
 };
@@ -735,5 +733,629 @@ Promise.all([
         console.error('Ошибка при загрузке данных WorkingGraduatesHE:', error);
     });
 
+/*
+=================================== Модель данных о трудоустройстве выпускников по специальностям (ВО) | WorkInSpecialityHE ======================
+*/
 
+// Получение контекста для рисования графиков
+let canvas_work_speciality_he = document.getElementById('WorkInSpecialityHE');
+let context_work_speciality_he = canvas_work_speciality_he.getContext('2d');
+
+let allDatasetsWorkSpecialityHE = [];
+let yearsWorkSpecialityHE = [];
+let chartWorkSpecialityHE = null;
+
+
+const updateLineChartWorkSpecialityHE = () => {
+    let selectedSpecialties = Array.from(document.querySelectorAll('#activityCheckboxesWorkInSpecialityHE input:checked'))
+        .map(cb => cb.value);
+
+    let filteredDatasets = allDatasetsWorkSpecialityHE.filter(dataset => {
+        let baseName = dataset.label
+            .replace(' (по специальности)', '')
+            .replace(' (не по специальности)', '');
+        return selectedSpecialties.includes(baseName);
+    });
+
+    let datasetsToShow = filteredDatasets.length > 0 ? filteredDatasets : [];
+
+    if (chartWorkSpecialityHE) {
+        chartWorkSpecialityHE.destroy();
+        chartWorkSpecialityHE = null;
+    }
+
+    let chartType = yearsWorkSpecialityHE.length === 1 ? 'bar' : 'line';
+
+    let datasetsForChart = datasetsToShow;
+    if (chartType === 'bar') {
+        datasetsForChart = datasetsToShow.map(dataset => {
+            let backgroundColor = 'rgba(0,0,0,0.3)';
+            if (dataset.borderColor) {
+                backgroundColor = dataset.borderColor.replace('hsl', 'hsla').replace(')', ', 0.3)');
+            }
+
+            return {
+                ...dataset,
+                tension: undefined,
+                backgroundColor: backgroundColor,
+                borderWidth: 1
+            };
+        });
+    }
+
+    if (context_work_speciality_he && yearsWorkSpecialityHE.length > 0) {
+        let config = {
+            type: chartType,
+            data: {
+                labels: yearsWorkSpecialityHE,
+                datasets: datasetsForChart
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { size: 10 },
+                            boxWidth: 12,
+                            boxHeight: 12,
+                            usePointStyle: chartType === 'line'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                let label = context.dataset.label || '';
+                                let value = context.parsed.y;
+                                return `${label}: ${value?.toFixed(1) ?? 'Нет данных'} тыс. чел.`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Численность выпускников (тыс. чел)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Год'
+                        }
+                    }
+                }
+            }
+        };
+
+        chartWorkSpecialityHE = new Chart(context_work_speciality_he, config);
+    }
+};
+
+
+// Получение данных с сервера
+Promise.all([
+    axios.get('/api/rus/specialty'),
+    axios.get('/api/rus/he/workspecial')
+])
+    .then(([specialtyResponse, workSpecialityResponse]) => {
+
+        let specialtyNames = {};
+        specialtyResponse.data.forEach(specialty => {
+            specialtyNames[specialty.id] = specialty.name;
+        });
+
+        let data = workSpecialityResponse.data;
+
+        yearsWorkSpecialityHE = [...new Set(data.map(item => item.year))].sort((a, b) => a - b);
+
+        let byProfessionData = {};      // работают по специальности
+        let notByProfessionData = {};   // работают не по специальности
+
+        data.forEach(item => {
+            let specialtyId = item.special_type;
+            let specialtyName = specialtyNames[specialtyId];
+            let year = item.year;
+            let works_by_profession = item.works_by_profession;
+            let works_not_by_profession = item.works_not_by_profession;
+
+            if (!specialtyName) return;
+
+            if (!byProfessionData[specialtyName]) {
+                byProfessionData[specialtyName] = {};
+            }
+            byProfessionData[specialtyName][year] = works_by_profession;
+
+            if (!notByProfessionData[specialtyName]) {
+                notByProfessionData[specialtyName] = {};
+            }
+            notByProfessionData[specialtyName][year] = works_not_by_profession;
+        });
+
+        allDatasetsWorkSpecialityHE = [];
+        let colorIndex = 0;
+        let totalSpecialties = Object.keys(byProfessionData).length;
+
+        for (let specialtyName in byProfessionData) {
+            let hue = (colorIndex * 360 / totalSpecialties) % 360;
+            let borderColor = `hsl(${hue}, 70%, 55%)`;
+
+            // Данные: работают по специальности
+            let byProfessionValues = [];
+            for (let i = 0; i < yearsWorkSpecialityHE.length; i++) {
+                let year = yearsWorkSpecialityHE[i];
+                byProfessionValues.push(byProfessionData[specialtyName]?.[year] ?? null);
+            }
+
+            allDatasetsWorkSpecialityHE.push({
+                label: `${specialtyName} (по специальности)`,
+                data: byProfessionValues,
+                borderColor: borderColor,
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                borderDash: [],
+                tension: 0.1,
+                fill: false
+            });
+
+            // Данные: работают не по специальности
+            let notByProfessionValues = [];
+            for (let i = 0; i < yearsWorkSpecialityHE.length; i++) {
+                let year = yearsWorkSpecialityHE[i];
+                notByProfessionValues.push(notByProfessionData[specialtyName]?.[year] ?? null);
+            }
+
+            allDatasetsWorkSpecialityHE.push({
+                label: `${specialtyName} (не по специальности)`,
+                data: notByProfessionValues,
+                borderColor: borderColor,
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                borderDash: [5, 5],  // пунктирная линия
+                tension: 0.1,
+                fill: false
+            });
+
+            colorIndex++;
+        }
+
+        createActivityCheckboxes(byProfessionData, 'activityCheckboxesWorkInSpecialityHE', updateLineChartWorkSpecialityHE);
+        updateLineChartWorkSpecialityHE();
+    })
+    .catch(error => {
+        console.error('Ошибка при загрузке данных WorkInSpecialityHE:', error);
+    });
+
+
+
+
+
+/*
+=================================== Модель данных о занятости выпускников СПО | WorkingGraduatesSPO ======================
+*/
+
+// Получение контекста для рисования графиков
+let canvas_work_grad_spo = document.getElementById('WorkingGraduatesSPO');
+let context_work_grad_spo = canvas_work_grad_spo.getContext('2d');
+
+let allDatasetsWorkGradsSPO = [];
+let yearsWorkGradsSPO = [];
+let chartWorkGradsSPO = null;
+
+
+const updateLineChartWorkGradsSPO = () => {
+    let selectedActivities = Array.from(document.querySelectorAll('#activityCheckboxesWorkingGraduatesSPO input:checked'))
+        .map(cb => cb.value);
+
+    let filteredDatasets = allDatasetsWorkGradsSPO.filter(dataset => {
+        let baseName = dataset.label
+            .replace(' (Занятые)', '')
+            .replace(' (Безработные)', '')
+            .replace(' (Вне раб. силы)', '');
+        return selectedActivities.includes(baseName);
+    });
+
+    let datasetsToShow = filteredDatasets.length > 0 ? filteredDatasets : [];
+
+    if (chartWorkGradsSPO) {
+        chartWorkGradsSPO.destroy();
+        chartWorkGradsSPO = null;
+    }
+
+    let chartType = yearsWorkGradsSPO.length === 1 ? 'bar' : 'line';
+
+    let datasetsForChart = datasetsToShow;
+    if (chartType === 'bar') {
+        datasetsForChart = datasetsToShow.map(dataset => {
+            let backgroundColor = 'rgba(0,0,0,0.3)';
+            if (dataset.borderColor) {
+                backgroundColor = dataset.borderColor.replace('hsl', 'hsla').replace(')', ', 0.3)');
+            }
+
+            return {
+                ...dataset,
+                tension: undefined,
+                backgroundColor: backgroundColor,
+                borderWidth: 1
+            };
+        });
+    }
+
+    if (context_work_grad_spo && yearsWorkGradsSPO.length > 0) {
+        let config = {
+            type: chartType,
+            data: {
+                labels: yearsWorkGradsSPO,
+                datasets: datasetsForChart
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { size: 10 },
+                            boxWidth: 12,
+                            boxHeight: 12,
+                            usePointStyle: chartType === 'line'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                let label = context.dataset.label || '';
+                                let value = context.parsed.y;
+                                return `${label}: ${value?.toFixed(1) ?? 'Нет данных'} тыс. чел.`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Занятость выпускников СПО (тыс. чел)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Год'
+                        }
+                    }
+                }
+            }
+        };
+
+        chartWorkGradsSPO = new Chart(context_work_grad_spo, config);
+    }
+};
+
+
+// Получение данных с сервера
+Promise.all([
+    axios.get('/api/rus/activitytype'),
+    axios.get('/api/rus/spo/workgrad')
+])
+    .then(([activityResponse, workgradSpoResponse]) => {
+
+        let activityNames = {};
+        activityResponse.data.forEach(activity => {
+            activityNames[activity.id] = activity.name;
+        });
+
+        let data = workgradSpoResponse.data;
+
+        yearsWorkGradsSPO = [...new Set(data.map(item => item.year))].sort((a, b) => a - b);
+
+        let workingDataSPO = {};      // занятые
+        let notWorkingDataSPO = {};   // безработные
+        let canNotWorkDataSPO = {};   // не входящие в рабочую силу
+
+        data.forEach(item => {
+            let activityId = item.activity_type;
+            let activityName = activityNames[activityId];
+            let year = item.year;
+            let working = item.working;
+            let not_working = item.not_working;
+            let can_not_work = item.can_not_work;
+
+            if (!activityName) return;
+
+            if (!workingDataSPO[activityName]) {
+                workingDataSPO[activityName] = {};
+            }
+            workingDataSPO[activityName][year] = working;
+
+            if (!notWorkingDataSPO[activityName]) {
+                notWorkingDataSPO[activityName] = {};
+            }
+            notWorkingDataSPO[activityName][year] = not_working;
+
+            if (!canNotWorkDataSPO[activityName]) {
+                canNotWorkDataSPO[activityName] = {};
+            }
+            canNotWorkDataSPO[activityName][year] = can_not_work;
+        });
+
+        allDatasetsWorkGradsSPO = [];
+        let colorIndex = 0;
+        let totalActivities = Object.keys(workingDataSPO).length;
+
+        for (let activityName in workingDataSPO) {
+            let hue = (colorIndex * 360 / totalActivities) % 360;
+            let borderColor = `hsl(${hue}, 70%, 55%)`;
+
+            // Занятые
+            let workingValues = [];
+            for (let i = 0; i < yearsWorkGradsSPO.length; i++) {
+                let year = yearsWorkGradsSPO[i];
+                workingValues.push(workingDataSPO[activityName]?.[year] ?? null);
+            }
+
+            allDatasetsWorkGradsSPO.push({
+                label: `${activityName} (Занятые)`,
+                data: workingValues,
+                borderColor: borderColor,
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                borderDash: [],
+                tension: 0.1,
+                fill: false
+            });
+
+            // Безработные
+            let notWorkingValues = [];
+            for (let i = 0; i < yearsWorkGradsSPO.length; i++) {
+                let year = yearsWorkGradsSPO[i];
+                notWorkingValues.push(notWorkingDataSPO[activityName]?.[year] ?? null);
+            }
+
+            allDatasetsWorkGradsSPO.push({
+                label: `${activityName} (Безработные)`,
+                data: notWorkingValues,
+                borderColor: borderColor,
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                borderDash: [5, 5],  // пунктирная линия
+                tension: 0.1,
+                fill: false
+            });
+
+            // Не входящие в рабочую силу
+            let canNotWorkValues = [];
+            for (let i = 0; i < yearsWorkGradsSPO.length; i++) {
+                let year = yearsWorkGradsSPO[i];
+                canNotWorkValues.push(canNotWorkDataSPO[activityName]?.[year] ?? null);
+            }
+
+            allDatasetsWorkGradsSPO.push({
+                label: `${activityName} (Вне раб. силы)`,
+                data: canNotWorkValues,
+                borderColor: borderColor,
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                borderDash: [2, 2],  // мелкий пунктир
+                tension: 0.1,
+                fill: false
+            });
+
+            colorIndex++;
+        }
+
+        console.log('🎨 Создано датасетов для WorkingGraduatesSPO:', allDatasetsWorkGradsSPO.length);
+        console.log('📋 Доступные виды деятельности (СПО):', Object.keys(workingDataSPO));
+        console.log('📅 Годы (СПО):', yearsWorkGradsSPO);
+
+        createActivityCheckboxes(workingDataSPO, 'activityCheckboxesWorkingGraduatesSPO', updateLineChartWorkGradsSPO);
+        updateLineChartWorkGradsSPO();
+    })
+    .catch(error => {
+        console.error('Ошибка при загрузке данных WorkingGraduatesSPO:', error);
+    });
+
+/*
+=================================== Модель данных о трудоустройстве выпускников по специальностям (СПО) | WorkInSpecialitySPO ======================
+*/
+
+// Получение контекста для рисования графиков
+let canvas_work_speciality_spo = document.getElementById('WorkInSpecialitySPO');
+let context_work_speciality_spo = canvas_work_speciality_spo.getContext('2d');
+
+let allDatasetsWorkSpecialitySPO = [];
+let yearsWorkSpecialitySPO = [];
+let chartWorkSpecialitySPO = null;
+
+
+const updateLineChartWorkSpecialitySPO = () => {
+    let selectedSpecialties = Array.from(document.querySelectorAll('#activityCheckboxesWorkInSpecialitySPO input:checked'))
+        .map(cb => cb.value);
+
+    let filteredDatasets = allDatasetsWorkSpecialitySPO.filter(dataset => {
+        let baseName = dataset.label
+            .replace(' (по специальности)', '')
+            .replace(' (не по специальности)', '');
+        return selectedSpecialties.includes(baseName);
+    });
+
+    let datasetsToShow = filteredDatasets.length > 0 ? filteredDatasets : [];
+
+    if (chartWorkSpecialitySPO) {
+        chartWorkSpecialitySPO.destroy();
+        chartWorkSpecialitySPO = null;
+    }
+
+    let chartType = yearsWorkSpecialitySPO.length === 1 ? 'bar' : 'line';
+
+    let datasetsForChart = datasetsToShow;
+    if (chartType === 'bar') {
+        datasetsForChart = datasetsToShow.map(dataset => {
+            let backgroundColor = 'rgba(0,0,0,0.3)';
+            if (dataset.borderColor) {
+                backgroundColor = dataset.borderColor.replace('hsl', 'hsla').replace(')', ', 0.3)');
+            }
+
+            return {
+                ...dataset,
+                tension: undefined,
+                backgroundColor: backgroundColor,
+                borderWidth: 1
+            };
+        });
+    }
+
+    if (context_work_speciality_spo && yearsWorkSpecialitySPO.length > 0) {
+        let config = {
+            type: chartType,
+            data: {
+                labels: yearsWorkSpecialitySPO,
+                datasets: datasetsForChart
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { size: 10 },
+                            boxWidth: 12,
+                            boxHeight: 12,
+                            usePointStyle: chartType === 'line'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                let label = context.dataset.label || '';
+                                let value = context.parsed.y;
+                                return `${label}: ${value?.toFixed(1) ?? 'Нет данных'} тыс. чел.`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Численность выпускников СПО (тыс. чел)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Год'
+                        }
+                    }
+                }
+            }
+        };
+
+        chartWorkSpecialitySPO = new Chart(context_work_speciality_spo, config);
+    }
+};
+
+
+// Получение данных с сервера
+Promise.all([
+    axios.get('/api/rus/specialty'),
+    axios.get('/api/rus/spo/workspecial')
+])
+    .then(([specialtyResponse, workSpecialitySpoResponse]) => {
+
+        let specialtyNames = {};
+        specialtyResponse.data.forEach(specialty => {
+            specialtyNames[specialty.id] = specialty.name;
+        });
+
+        let data = workSpecialitySpoResponse.data;
+
+        yearsWorkSpecialitySPO = [...new Set(data.map(item => item.year))].sort((a, b) => a - b);
+
+        let byProfessionDataSPO = {};      // работают по специальности
+        let notByProfessionDataSPO = {};   // работают не по специальности
+
+        data.forEach(item => {
+            let specialtyId = item.special_type;
+            let specialtyName = specialtyNames[specialtyId];
+            let year = item.year;
+            let works_by_profession = item.works_by_profession;
+            let works_not_by_profession = item.works_not_by_profession;
+
+            if (!specialtyName) return;
+
+            if (!byProfessionDataSPO[specialtyName]) {
+                byProfessionDataSPO[specialtyName] = {};
+            }
+            byProfessionDataSPO[specialtyName][year] = works_by_profession;
+
+            if (!notByProfessionDataSPO[specialtyName]) {
+                notByProfessionDataSPO[specialtyName] = {};
+            }
+            notByProfessionDataSPO[specialtyName][year] = works_not_by_profession;
+        });
+
+        allDatasetsWorkSpecialitySPO = [];
+        let colorIndex = 0;
+        let totalSpecialties = Object.keys(byProfessionDataSPO).length;
+
+        for (let specialtyName in byProfessionDataSPO) {
+            let hue = (colorIndex * 360 / totalSpecialties) % 360;
+            let borderColor = `hsl(${hue}, 70%, 55%)`;
+
+            // Данные: работают по специальности
+            let byProfessionValues = [];
+            for (let i = 0; i < yearsWorkSpecialitySPO.length; i++) {
+                let year = yearsWorkSpecialitySPO[i];
+                byProfessionValues.push(byProfessionDataSPO[specialtyName]?.[year] ?? null);
+            }
+
+            allDatasetsWorkSpecialitySPO.push({
+                label: `${specialtyName} (по специальности)`,
+                data: byProfessionValues,
+                borderColor: borderColor,
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                borderDash: [],
+                tension: 0.1,
+                fill: false
+            });
+
+            // Данные: работают не по специальности
+            let notByProfessionValues = [];
+            for (let i = 0; i < yearsWorkSpecialitySPO.length; i++) {
+                let year = yearsWorkSpecialitySPO[i];
+                notByProfessionValues.push(notByProfessionDataSPO[specialtyName]?.[year] ?? null);
+            }
+
+            allDatasetsWorkSpecialitySPO.push({
+                label: `${specialtyName} (не по специальности)`,
+                data: notByProfessionValues,
+                borderColor: borderColor,
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                borderDash: [5, 5],  // пунктирная линия
+                tension: 0.1,
+                fill: false
+            });
+
+            colorIndex++;
+        }
+
+        console.log('🎨 Создано датасетов для WorkInSpecialitySPO:', allDatasetsWorkSpecialitySPO.length);
+        console.log('📋 Доступные специальности (СПО):', Object.keys(byProfessionDataSPO));
+        console.log('📅 Годы (СПО):', yearsWorkSpecialitySPO);
+
+        createActivityCheckboxes(byProfessionDataSPO, 'activityCheckboxesWorkInSpecialitySPO', updateLineChartWorkSpecialitySPO);
+        updateLineChartWorkSpecialitySPO();
+    })
+    .catch(error => {
+        console.error('Ошибка при загрузке данных WorkInSpecialitySPO:', error);
+    });
 
