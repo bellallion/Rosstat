@@ -143,19 +143,6 @@ Array.from(select_time).forEach(el => {
 })
 
 
-// Показ необходимой информации
-
-var btn = document.getElementById("button-show-info");
-var div_show_info = document.getElementsByClassName("show-info")[0];
-
-btn.addEventListener("click", function () {
-    // Регионы должны быть выбраны
-    if($('.select-name-region').val() || ($('.select-name-region-first').val()
-    && $('.select-name-region-second').val())){
-        div_show_info.style.display = 'flex';
-    }
-
-});
 
 // Показ индикатора
 

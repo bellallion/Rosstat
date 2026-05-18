@@ -4,28 +4,57 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
+    margin-bottom: 30px; 
 }
 
 .show-charts p {
-  font-size: 20px;
-  color: #005b96;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  font-weight: 600;
+    font-size: 20px;
+    color: #005b96;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    font-weight: 600;
 }
 
 .show-charts p::after {
-  color: #5562d9;
+    color: #5562d9;
 }
 
-
-#button-select-type:hover {
-  background-color: #1565c0;
-  transform: translateY(-2px);
-}
-
-.chart-description{
+.chart-description {
     font-size: 18px;
     color: #424242;
-    margin: 10px;
+    margin: 10px 0 20px 0; 
+}
+
+
+.chart-wrapper {
+    width: 100%;
+    height: 500px;
+    position: relative;
+    margin-top: 10px;
+}
+
+#LaborForceRegion,
+#WorkForceLevel,
+#WorkForceHE,
+#PopulationRegionChart {
+    width: 100% !important;
+    height: 500px !important;
+}
+
+@media (max-width: 768px) {
+    .chart-wrapper {
+        height: 350px;
+    }
+    
+    #LaborForceRegion,
+    #WorkForceLevel,
+    #WorkForceHE,
+    #PopulationRegionChart {
+        height: 350px !important;
+    }
+}
+
+#button-select-type:hover {
+    background-color: #1565c0;
+    transform: translateY(-2px);
 }

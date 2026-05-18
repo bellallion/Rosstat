@@ -1,6 +1,7 @@
 .select-region {
     display: flex;
     flex-direction: row;
+    gap: 20px;
 }
 
 .map-russia {
@@ -39,13 +40,13 @@
     fill: #929cf0;
 }
 
-.select-from-list-and-text {
+/* .select-from-list-and-text {
     width: 20%;
     display: flex;
     flex-direction: column;
     margin: 10px;
     align-items: center;
-}
+} */
 
 #anchors {
     display: flex;
@@ -93,6 +94,7 @@
 .select-from-list-and-text {
     display: flex;
     flex-direction: column;
+    width: 30%;
     gap: 20px;
     padding: 20px;
     background-color: var(--white);
