@@ -35,10 +35,10 @@ router.register(r'rus/he/workspecial', WorkInSpecialityHEApiView)
 router.register(r'rus/spo/workspecial', WorkInSpecialitySPOApiView)
 
 router.register(r'regions', RegionsRFApiView)
-router.register(r'reg/laborforce', LaborForceRegionApiView)
-router.register(r'reg/population', PopulationRegionApiView)
-router.register(r'reg/workforcelevel', WorkForceLevelApiView)
-router.register(r'reg/he/workforcelevel', WorkForceHEApiView)
+router.register(r'reg/laborforce', LaborForceRegionApiView, basename='labor-force')
+router.register(r'reg/population', PopulationRegionApiView, basename='population')
+router.register(r'reg/workforcelevel', WorkForceLevelApiView, basename='workforce-level')
+router.register(r'reg/he/workforcelevel', WorkForceHEApiView, basename='workforce-he')
 
 
 

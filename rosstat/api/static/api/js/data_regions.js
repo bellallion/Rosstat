@@ -31,12 +31,22 @@ let chartWorkforceLevel = null;
 let chartWorkforceHE = null;
 let chartPopulation = null;
 
+
 // Функция обновления графика численности рабочей силы
 const updateChartLaborForce = () => {
+    if (!context_labor_force) return;
+
+    // Если график уже существует, обновляем его данные
     if (chartLaborForce) {
+        chartLaborForce.data.labels = yearsLaborForce; // Важно обновить оси X
         chartLaborForce.data.datasets = laborForceData;
+        
+        // Опционально: можно менять тип графика, но проще оставить тот, что был, 
+        // или пересоздать, если тип критичен. Для простоты здесь просто update.
         chartLaborForce.update();
-    } else if (context_labor_force && yearsLaborForce.length > 0) {
+    } 
+    // Если графика нет, создаем новый
+    else if (yearsLaborForce.length > 0) {
         let chartType = yearsLaborForce.length === 1 ? 'bar' : 'line';
 
         let datasetsForChart = laborForceData;
@@ -101,12 +111,14 @@ const updateChartLaborForce = () => {
 
 // Функция обновления графика уровня участия в рабочей силе
 const updateChartWorkforceLevel = () => {
+    if (!context_workforce_level) return;
+
     if (chartWorkforceLevel) {
+        chartWorkforceLevel.data.labels = yearsWorkforceLevel;
         chartWorkforceLevel.data.datasets = workforceLevelData;
         chartWorkforceLevel.update();
-    } else if (context_workforce_level && yearsWorkforceLevel.length > 0) {
+    } else if (yearsWorkforceLevel.length > 0) {
         let chartType = yearsWorkforceLevel.length === 1 ? 'bar' : 'line';
-
         let datasetsForChart = workforceLevelData;
         if (chartType === 'bar') {
             datasetsForChart = workforceLevelData.map(dataset => ({
@@ -126,40 +138,12 @@ const updateChartWorkforceLevel = () => {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        position: 'bottom',
-                        onClick: null,
-                        labels: {
-                            font: { size: 10 },
-                            boxWidth: 12,
-                            boxHeight: 12,
-                            usePointStyle: true
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function (context) {
-                                let label = context.dataset.label || '';
-                                let value = context.parsed.y;
-                                return `${label}: ${value?.toFixed(1) ?? 'Нет данных'} %`;
-                            }
-                        }
-                    }
+                    legend: { position: 'bottom', onClick: null, labels: { font: { size: 10 }, boxWidth: 12, boxHeight: 12, usePointStyle: true } },
+                    tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label || ''}: ${ctx.parsed.y?.toFixed(1) ?? 'Нет данных'} %` } }
                 },
                 scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Уровень участия (%)'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Год'
-                        }
-                    }
+                    y: { beginAtZero: true, title: { display: true, text: 'Уровень участия (%)' } },
+                    x: { title: { display: true, text: 'Год' } }
                 }
             }
         };
@@ -169,12 +153,14 @@ const updateChartWorkforceLevel = () => {
 
 // Функция обновления графика доли работников с высшим образованием
 const updateChartWorkforceHE = () => {
+    if (!context_workforce_he) return;
+
     if (chartWorkforceHE) {
+        chartWorkforceHE.data.labels = yearsWorkforceHE;
         chartWorkforceHE.data.datasets = workforceHEData;
         chartWorkforceHE.update();
-    } else if (context_workforce_he && yearsWorkforceHE.length > 0) {
+    } else if (yearsWorkforceHE.length > 0) {
         let chartType = yearsWorkforceHE.length === 1 ? 'bar' : 'line';
-
         let datasetsForChart = workforceHEData;
         if (chartType === 'bar') {
             datasetsForChart = workforceHEData.map(dataset => ({
@@ -194,40 +180,12 @@ const updateChartWorkforceHE = () => {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        position: 'bottom',
-                        onClick: null,
-                        labels: {
-                            font: { size: 10 },
-                            boxWidth: 12,
-                            boxHeight: 12,
-                            usePointStyle: true
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function (context) {
-                                let label = context.dataset.label || '';
-                                let value = context.parsed.y;
-                                return `${label}: ${value?.toFixed(1) ?? 'Нет данных'} %`;
-                            }
-                        }
-                    }
+                    legend: { position: 'bottom', onClick: null, labels: { font: { size: 10 }, boxWidth: 12, boxHeight: 12, usePointStyle: true } },
+                    tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label || ''}: ${ctx.parsed.y?.toFixed(1) ?? 'Нет данных'} %` } }
                 },
                 scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Доля с высшим образованием (%)'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Год'
-                        }
-                    }
+                    y: { beginAtZero: true, title: { display: true, text: 'Доля с высшим образованием (%)' } },
+                    x: { title: { display: true, text: 'Год' } }
                 }
             }
         };
@@ -237,12 +195,14 @@ const updateChartWorkforceHE = () => {
 
 // Функция обновления графика численности населения
 const updateChartPopulation = () => {
+    if (!context_population) return;
+
     if (chartPopulation) {
+        chartPopulation.data.labels = yearsPopulation;
         chartPopulation.data.datasets = populationData;
         chartPopulation.update();
-    } else if (context_population && yearsPopulation.length > 0) {
+    } else if (yearsPopulation.length > 0) {
         let chartType = yearsPopulation.length === 1 ? 'bar' : 'line';
-
         let datasetsForChart = populationData;
         if (chartType === 'bar') {
             datasetsForChart = populationData.map(dataset => ({
@@ -262,40 +222,12 @@ const updateChartPopulation = () => {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        position: 'bottom',
-                        onClick: null,
-                        labels: {
-                            font: { size: 10 },
-                            boxWidth: 12,
-                            boxHeight: 12,
-                            usePointStyle: true
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function (context) {
-                                let label = context.dataset.label || '';
-                                let value = context.parsed.y;
-                                return `${label}: ${value?.toFixed(1) ?? 'Нет данных'} тыс. чел.`;
-                            }
-                        }
-                    }
+                    legend: { position: 'bottom', onClick: null, labels: { font: { size: 10 }, boxWidth: 12, boxHeight: 12, usePointStyle: true } },
+                    tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label || ''}: ${ctx.parsed.y?.toFixed(1) ?? 'Нет данных'} тыс. чел.` } }
                 },
                 scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Численность (тыс. чел.)'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Год'
-                        }
-                    }
+                    y: { beginAtZero: true, title: { display: true, text: 'Численность (тыс. чел.)' } },
+                    x: { title: { display: true, text: 'Год' } }
                 }
             }
         };
@@ -303,13 +235,42 @@ const updateChartPopulation = () => {
     }
 };
 
+const destroyCharts = () => {
+    if (chartLaborForce) {
+        chartLaborForce.destroy();
+        chartLaborForce = null;
+    }
+    if (chartWorkforceLevel) {
+        chartWorkforceLevel.destroy();
+        chartWorkforceLevel = null;
+    }
+    if (chartWorkforceHE) {
+        chartWorkforceHE.destroy();
+        chartWorkforceHE = null;
+    }
+    if (chartPopulation) {
+        chartPopulation.destroy();
+        chartPopulation = null;
+    }
+};
+
 
 // Функция загрузки данных по региону
 const loadRegionData = (regionId, regionName) => {
+    destroyCharts();
+
+    yearsLaborForce = [];
+    yearsWorkforceLevel = [];
+    yearsWorkforceHE = [];
+    yearsPopulation = [];
+
+    console.log(regionId, regionName)
+
     // Загрузка данных о рабочей силе
     axios.get(`/api/reg/laborforce/?region=${regionId}`)
         .then(response => {
             let data = response.data;
+            console.log(data)
             if (data && data.length > 0) {
                 yearsLaborForce = [...new Set(data.map(item => item.year))].sort((a, b) => a - b);
                 let values = yearsLaborForce.map(year => {
@@ -421,7 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchButton) {
         searchButton.addEventListener('click', () => {
             let select = document.querySelector('.select-name-region');
-            let regionId = select?.value;
+            let regionId = getRegionCode(select?.value);
             let regionName = select?.options[select.selectedIndex]?.text;
 
             console.log('Выбран регион:', regionName, 'ID:', regionId);

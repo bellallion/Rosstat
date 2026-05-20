@@ -125,30 +125,54 @@ class RegionsRFApiView(viewsets.ModelViewSet):
     serializer_class = RegionsRFSerializer
     http_method_names = ['get']
 
+
 #---Численность рабочей силы по регионам РФ
 
 class LaborForceRegionApiView(viewsets.ModelViewSet):
     queryset = LaborForceRegion.objects.all()
     serializer_class = LaborForceRegionSerializer
     http_method_names = ['get']
+    def get_queryset(self):
+        queryset = LaborForceRegion.objects.all()
+        region_id = self.request.query_params.get('region')
+        
+        if region_id is not None:
+            queryset = queryset.filter(region_id=region_id)
+    
+        return queryset
 
 #---Численность населения по регионам РФ
 
 class PopulationRegionApiView(viewsets.ModelViewSet):
-    queryset = PopulationRegion.objects.all()
     serializer_class = PopulationRegionSerializer
     http_method_names = ['get']
+    def get_queryset(self):
+        queryset = PopulationRegion.objects.all()
+        region_id = self.request.query_params.get('region')
+        if region_id is not None:
+            queryset = queryset.filter(region_id=region_id)
+        return queryset
 
 #---Уровень участия в рабочей силе по регионам РФ
 
 class WorkForceLevelApiView(viewsets.ModelViewSet):
-    queryset = WorkForceLevel.objects.all()
     serializer_class = WorkForceLevelSerializer
     http_method_names = ['get']
+    def get_queryset(self):
+        queryset = WorkForceLevel.objects.all()
+        region_id = self.request.query_params.get('region')
+        if region_id is not None:
+            queryset = queryset.filter(region_id=region_id)
+        return queryset
 
 #---Доля работников с высшим образованием по регионам РФ
 
 class WorkForceHEApiView(viewsets.ModelViewSet):
-    queryset = WorkForceHE.objects.all()
     serializer_class = WorkForceHESerializer
     http_method_names = ['get']
+    def get_queryset(self):
+        queryset = WorkForceHE.objects.all()
+        region_id = self.request.query_params.get('region')
+        if region_id is not None:
+            queryset = queryset.filter(region_id=region_id)
+        return queryset

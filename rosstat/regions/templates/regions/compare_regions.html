@@ -20,11 +20,11 @@
     <div class="select-from-list-and-text">
         <p id="title-name">СРАВНЕНИЕ РЕГИОНОВ</p>
         <!-- <div class="select-from-list"> -->
-            <h1>Первый регион:</h1>
+            <h2>Первый регион:</h2>
             <select class="select-name-region-first" >
                 <option value=""></option>
             </select>
-            <h1>Второй регион:</h1>
+            <h2>Второй регион:</h2>
             <select class="select-name-region-second" >
                 <option value=""></option>
             </select>
@@ -55,62 +55,12 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
 <!-- подключение chart -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- подключение axois (для получения данных) -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <script src="{% static 'regions/js/select_region.js' %}"></script>
 <script src="{% static 'regions/js/compare_regions_map.js' %}"></script>
-<script src="{% static 'regions/js/charts.js' %}"></script>
+<script src="{% static 'api\js\data_compare_regions.js' %}"></script>
 
-<script>
-    btn.addEventListener("click", function () {
-        if ($('.select-name-region-first').val() && $('.select-name-region-second').val()){
-            var nameLaborForceRegion = `{{ nameLaborForceRegion|safe }}`;
-            // var year_2017_lbr = `{{ year_2017_lbr|safe }}`;
-            var year_2018_lbr = `{{ year_2018_lbr|safe }}`;
-            var year_2019_lbr = `{{ year_2019_lbr|safe }}`;
-            var year_2020_lbr = `{{ year_2020_lbr|safe }}`;
-            var year_2021_lbr = `{{ year_2021_lbr|safe }}`;
-            var year_2022_lbr = `{{ year_2022_lbr|safe }}`;
-            var year_2023_lbr = `{{ year_2023_lbr|safe }}`;
-            var year_2024_lbr = `{{ year_2024_lbr|safe }}`;
-            //PopulationRegion
-            var namePopulationRegion = `{{ namePopulationRegion|safe }}`;
-            var year_2018_pr = `{{ year_2018_pr|safe }}`;
-            var year_2019_pr = `{{ year_2019_pr|safe }}`;
-            var year_2020_pr = `{{ year_2020_pr|safe }}`;
-            var year_2021_pr = `{{ year_2021_pr|safe }}`;
-            var year_2022_pr = `{{ year_2022_pr|safe }}`;
-            var year_2023_pr = `{{ year_2023_pr|safe }}`;
-            var year_2024_pr = `{{ year_2024_pr|safe }}`;
-            //#WorkForceLevel
-            var nameWorkForceLevel = `{{ nameWorkForceLevel|safe }}`;
-            var year_2018_wfl = `{{ year_2018_wfl|safe }}`;
-            var year_2019_wfl = `{{ year_2019_wfl|safe }}`;
-            var year_2020_wfl = `{{ year_2020_wfl|safe }}`;
-            var year_2021_wfl = `{{ year_2021_wfl|safe }}`;
-            var year_2022_wfl = `{{ year_2022_wfl|safe }}`;
-            var year_2023_wfl = `{{ year_2023_wfl|safe }}`;
-            var year_2024_wfl = `{{ year_2024_wfl|safe }}`;
-            //WorkForceLevel
-            var nameWorkForceHE = `{{ nameWorkForceHE|safe }}`;
-            var year_2019_wfhe = `{{ year_2019_wfhe|safe }}`;
-            var year_2020_wfhe = `{{ year_2020_wfhe|safe }}`;
-            var year_2021_wfhe = `{{ year_2021_wfhe|safe }}`;
-            var year_2022_wfhe = `{{ year_2022_wfhe|safe }}`;
-            var year_2023_wfhe = `{{ year_2023_wfhe|safe }}`;
-            var year_2024_wfhe = `{{ year_2024_wfhe|safe }}`;
-
-            
-            var region_name_first = $('.select-name-region-first option:selected').text();
-            var region_name_second = $('.select-name-region-second option:selected').text();
-
-            updateChartLaborForceRegion_Comp(region_name_first, region_name_second, nameLaborForceRegion, year_2018_lbr, year_2019_lbr, year_2020_lbr, year_2021_lbr, year_2022_lbr, year_2023_lbr, year_2024_lbr,
-                namePopulationRegion, year_2018_pr, year_2019_pr, year_2020_pr, year_2021_pr, year_2022_pr, year_2023_pr, year_2024_pr
-            );
-            updateChartWorkForceLevel_Comp(region_name_first, region_name_second, nameWorkForceLevel, year_2018_wfl , year_2019_wfl , year_2020_wfl , year_2021_wfl , year_2022_wfl , year_2023_wfl , year_2024_wfl);
-            updateChartWorkForceHE_Comp(region_name_first, region_name_second, nameWorkForceHE, year_2019_wfhe , year_2020_wfhe , year_2021_wfhe , year_2022_wfhe , year_2023_wfhe , year_2024_wfhe);
-    
-        }
-    });
-</script>
 
 {% endblock %}
