@@ -7,8 +7,14 @@
     <div class="chart-wrapper">
         <canvas id="population"></canvas>
     </div>
-    <button class="download-chart-btn" data-target="population">Скачать график</button>
-    <button class="download-csv-btn" data-type="population">Скачать данные (CSV)</button>
+    <div class="chart-actions-container">
+        <button class="action-btn btn-png" data-target="population">
+            Скачать график (png)
+        </button>
+        <a href="/api/rus/population/csv/" class="action-btn btn-csv">
+            Скачать данные (csv)
+        </a>
+    </div>
 </div>
 
 <div class="show-charts">
@@ -20,7 +26,14 @@
     <div class="chart-wrapper">
         <canvas id="EmploymentRussia"></canvas>
     </div>
-    <button class="download-chart-btn" data-target="EmploymentRussia">Скачать график</button>
+    <div class="chart-actions-container">
+        <button class="action-btn btn-png" data-target="EmploymentRussia">
+            Скачать график (png)
+        </button>
+        <a href="/api/rus/rus/employrus/csv/" class="action-btn btn-csv">
+            Скачать данные (csv)
+        </a>
+    </div>
 </div>
 
 <div class="show-charts">
@@ -33,7 +46,14 @@
     <div class="chart-wrapper">
         <canvas id="EmploymentByTypeOfWork"></canvas>
     </div>
-    <button class="download-chart-btn" data-target="EmploymentByTypeOfWork">Скачать график</button>
+    <div class="chart-actions-container">
+        <button class="action-btn btn-png" data-target="EmploymentByTypeOfWork">
+            Скачать график (png)
+        </button>
+        <a href="/api/rus/employtypeofwork/csv/" class="action-btn btn-csv">
+            Скачать данные (csv)
+        </a>
+    </div>
 </div>
 
 <div class="show-charts">
@@ -45,7 +65,14 @@
     <div class="chart-wrapper">
         <canvas id="JobsByTypeOfWork"></canvas>
     </div>
-    <button class="download-chart-btn" data-target="JobsByTypeOfWork">Скачать график</button>
+    <div class="chart-actions-container">
+        <button class="action-btn btn-png" data-target="JobsByTypeOfWork">
+            Скачать график (png)
+        </button>
+        <a href="/api/rus/rus/jobsbytypework/csv/" class="action-btn btn-csv">
+            Скачать данные (csv)
+        </a>
+    </div>
 </div>
 
 <div id="show-two-type-charts">
@@ -61,7 +88,14 @@
             <div class="chart-wrapper">
                 <canvas id="WorkingGraduatesHE"></canvas>
             </div>
-            <button class="download-chart-btn" data-target="WorkingGraduatesHE">Скачать график</button>
+            <div class="chart-actions-container">
+                <button class="action-btn btn-png" data-target="WorkingGraduatesHE">
+                    Скачать график (png)
+                </button>
+                <a href="/api/rus/he/workgrad/csv/" class="action-btn btn-csv">
+                    Скачать данные (csv)
+                </a>
+            </div>
         </div>
         <div class="show-charts">
             <p>Трудоустройство выпускников (ВО)</p>
@@ -73,7 +107,14 @@
             <div class="chart-wrapper"> 
                 <canvas id="WorkInSpecialityHE"></canvas>
             </div>
-            <button class="download-chart-btn" data-target="WorkInSpecialityHE">Скачать график</button>
+            <div class="chart-actions-container">
+                <button class="action-btn btn-png" data-target="WorkInSpecialityHE">
+                    Скачать график (png)
+                </button>
+                <a href="/api/rus/he/workspecial/csv/" class="action-btn btn-csv">
+                    Скачать данные (csv)
+                </a>
+            </div>
         </div>
     </div>
     <div id="second-type" style="display:none;">
@@ -85,9 +126,16 @@
             </div>
             <div type="checkbox" id="activityCheckboxesWorkInSpecialitySPO"></div>
             <div class="chart-wrapper"> 
-                <canvas id="WorkInSpecialitySPO"></canvas>
+                <canvas id=" WorkingGraduatesSPO"></canvas>
             </div>
-            <button class="download-chart-btn" data-target="WorkInSpecialitySPO">Скачать график</button>
+            <div class="chart-actions-container">
+                <button class="action-btn btn-png" data-target=" WorkingGraduatesSPO">
+                    Скачать график (png)
+                </button>
+                <a href="/api/rus/spo/workspecial/csv/" class="action-btn btn-csv">
+                    Скачать данные (csv)
+                </a>
+            </div>
         </div>
         <div class="show-charts">
             <p>Трудоустройство выпускников (СПО)</p>
@@ -97,9 +145,16 @@
             </div>
             <div type="checkbox" id="activityCheckboxesWorkingGraduatesSPO"></div>
             <div class="chart-wrapper"> 
-                <canvas id="WorkingGraduatesSPO"></canvas>
+                <canvas id="WorkInSpecialitySPO"></canvas>
             </div>
-            <button class="download-chart-btn" data-target="WorkingGraduatesSPO">Скачать график</button>
+            <div class="chart-actions-container">
+                <button class="action-btn btn-png" data-target="WorkInSpecialitySPO">
+                    Скачать график (png)
+                </button>
+                <a href="/api/rus/spo/workspecial/csv/" class="action-btn btn-csv">
+                    Скачать данные (csv)
+                </a>
+            </div>
         </div>
     </div>
 </div>

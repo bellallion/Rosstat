@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const downloadButtons = document.querySelectorAll('.download-chart-btn');
+    const downloadButtons = document.querySelectorAll('.action-btn.btn-png');
 
     downloadButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -7,17 +7,27 @@ document.addEventListener('DOMContentLoaded', function() {
             const canvas = document.getElementById(canvasId);
 
             if (canvas) {
-                const link = document.createElement('a');
+                const ctx = canvas.getContext('2d');
                 
-                link.href = canvas.toDataURL('image/png');
-
-                link.download = `${canvasId}.png`;
+                ctx.save();
+                
+                ctx.globalCompositeOperation = 'destination-over';
+                ctx.fillStyle = '#FFFFFF'; 
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                const imageURI = canvas.toDataURL('image/png');
+                
+                ctx.restore();
+                
+                const link = document.createElement('a');
+                link.href = imageURI;
+                link.download = `${canvasId}_chart.png`;
                 
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
             } else {
-                console.error(`График не найден.`);
+                console.error(`Canvas с id "${canvasId}" не найден.`);
             }
         });
     });
