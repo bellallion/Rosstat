@@ -264,13 +264,12 @@ const loadRegionData = (regionId, regionName) => {
     yearsWorkforceHE = [];
     yearsPopulation = [];
 
-    console.log(regionId, regionName)
 
     // Загрузка данных о рабочей силе
     axios.get(`/api/reg/laborforce/?region=${regionId}`)
         .then(response => {
             let data = response.data;
-            console.log(data)
+
             if (data && data.length > 0) {
                 yearsLaborForce = [...new Set(data.map(item => item.year))].sort((a, b) => a - b);
                 let values = yearsLaborForce.map(year => {
@@ -385,7 +384,6 @@ document.addEventListener('DOMContentLoaded', () => {
             let regionId = getRegionCode(select?.value);
             let regionName = select?.options[select.selectedIndex]?.text;
 
-            console.log('Выбран регион:', regionName, 'ID:', regionId);
 
             if (regionId && regionName && regionId !== '') {
                 loadRegionData(regionId, regionName);

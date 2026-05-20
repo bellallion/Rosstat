@@ -80,7 +80,6 @@ function createOrUpdateComparisonChart(chart, context, years, datasets, title, y
 
 // Функция загрузки данных для двух регионов
 const loadComparisonData = async (region1Id, region1Name, region2Id, region2Name) => {
-    console.log('Сравнение:', region1Name, 'vs', region2Name);
     // Загружаем данные для обоих регионов
     const [
         laborForce1, laborForce2,
