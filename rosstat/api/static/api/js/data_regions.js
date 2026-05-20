@@ -381,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchButton) {
         searchButton.addEventListener('click', () => {
             let select = document.querySelector('.select-name-region');
-            let regionId = getRegionCode(select?.value);
+            let regionId = getRegionID(select?.value);
             let regionName = select?.options[select.selectedIndex]?.text;
 
 

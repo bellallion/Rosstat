@@ -269,13 +269,29 @@ class LaborForceRegionApiView(viewsets.ModelViewSet):
     serializer_class = LaborForceRegionSerializer
     http_method_names = ['get']
     def get_queryset(self):
-        queryset = LaborForceRegion.objects.all()
+        queryset = LaborForceRegion.objects.all().select_related('region')
         region_id = self.request.query_params.get('region')
         
         if region_id is not None:
             queryset = queryset.filter(region_id=region_id)
     
-        return queryset
+        return queryset.order_by('region__name', 'year')
+    
+    @action(detail=False, methods=['get'], url_path='csv')
+    def export_csv(self, request):
+        qs = self.get_queryset()
+        
+        response = HttpResponse(content_type='text/csv; charset=utf-8')
+        response['Content-Disposition'] = 'attachment; filename="labor_force_regions.csv"'
+        response.write('\ufeff')
+        
+        writer = csv.writer(response, delimiter=';')
+        writer.writerow(['Регион', 'Год', 'Численность рабочей силы (тыс.чел.)'])
+        
+        for row in qs.values('region__name', 'year', 'value'):
+            writer.writerow([row['region__name'], row['year'], row['value']])
+            
+        return response
 
 #---Численность населения по регионам РФ
 
@@ -288,6 +304,22 @@ class PopulationRegionApiView(viewsets.ModelViewSet):
         if region_id is not None:
             queryset = queryset.filter(region_id=region_id)
         return queryset
+    
+    @action(detail=False, methods=['get'], url_path='csv')
+    def export_csv(self, request):
+        qs = self.get_queryset()
+        
+        response = HttpResponse(content_type='text/csv; charset=utf-8')
+        response['Content-Disposition'] = 'attachment; filename="population_regions.csv"'
+        response.write('\ufeff')
+        
+        writer = csv.writer(response, delimiter=';')
+        writer.writerow(['Регион', 'Год', 'Численность населения (тыс.чел.)'])
+        
+        for row in qs.values('region__name', 'year', 'value'):
+            writer.writerow([row['region__name'], row['year'], row['value']])
+            
+        return response
 
 #---Уровень участия в рабочей силе по регионам РФ
 
@@ -300,6 +332,22 @@ class WorkForceLevelApiView(viewsets.ModelViewSet):
         if region_id is not None:
             queryset = queryset.filter(region_id=region_id)
         return queryset
+    
+    @action(detail=False, methods=['get'], url_path='csv')
+    def export_csv(self, request):
+        qs = self.get_queryset()
+        
+        response = HttpResponse(content_type='text/csv; charset=utf-8')
+        response['Content-Disposition'] = 'attachment; filename="workforce_level_regions.csv"'
+        response.write('\ufeff')
+        
+        writer = csv.writer(response, delimiter=';')
+        writer.writerow(['Регион', 'Год', 'Уровень участия в рабочей силе (%)'])
+        
+        for row in qs.values('region__name', 'year', 'value'):
+            writer.writerow([row['region__name'], row['year'], row['value']])
+            
+        return response
 
 #---Доля работников с высшим образованием по регионам РФ
 
@@ -312,3 +360,19 @@ class WorkForceHEApiView(viewsets.ModelViewSet):
         if region_id is not None:
             queryset = queryset.filter(region_id=region_id)
         return queryset
+    
+    @action(detail=False, methods=['get'], url_path='csv')
+    def export_csv(self, request):
+        qs = self.get_queryset()
+        
+        response = HttpResponse(content_type='text/csv; charset=utf-8')
+        response['Content-Disposition'] = 'attachment; filename="workforce_he_regions.csv"'
+        response.write('\ufeff')
+        
+        writer = csv.writer(response, delimiter=';')
+        writer.writerow(['Регион', 'Год', 'Доля работников с ВО (%)'])
+        
+        for row in qs.values('region__name', 'year', 'value'):
+            writer.writerow([row['region__name'], row['year'], row['value']])
+            
+        return response

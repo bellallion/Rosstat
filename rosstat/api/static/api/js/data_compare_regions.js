@@ -243,9 +243,9 @@ document.addEventListener('DOMContentLoaded', () => {
             let select1 = document.querySelector('.select-name-region-first');
             let select2 = document.querySelector('.select-name-region-second');
             
-            let region1Id = getRegionCode(select1?.value);
+            let region1Id = getRegionID(select1?.value);
             let region1Name = select1?.options[select1.selectedIndex]?.text;
-            let region2Id = getRegionCode(select2?.value);
+            let region2Id = getRegionID(select2?.value);
             let region2Name = select2?.options[select2.selectedIndex]?.text;
             
             if (region1Id && region2Id && region1Id !== '' && region2Id !== '') {
